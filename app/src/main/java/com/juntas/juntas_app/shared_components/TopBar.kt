@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.Coil
@@ -51,7 +52,7 @@ fun TopBar(
                 ) {
                     Image(painterResource(
                         id = R.drawable.logo_juntas_white),
-                        contentDescription = "Logo",
+                        contentDescription = stringResource(R.string.logo),
                         contentScale = ContentScale.Fit
                     )
                 }
@@ -67,7 +68,7 @@ fun TopBar(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(model = imageUrl,
-                    contentDescription = "Own profile",
+                    contentDescription = stringResource(R.string.own_profile),
                     contentScale = ContentScale.Fit,
                     error = painterResource(R.drawable.ic_launcher_foreground)
                 )
@@ -76,7 +77,7 @@ fun TopBar(
         actions = {
             Image(
                 painterResource(id = R.drawable.notification_pink ),
-                contentDescription = "Notifications",
+                contentDescription = stringResource(R.string.notifications),
                 modifier = Modifier.clickable { onNotificationsClicked() }
             )
         },

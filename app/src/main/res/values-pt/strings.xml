@@ -7,4 +7,7 @@
     <string name="passenger">Passageiro</string>
     <string name="driver_item">Ir para o motorista</string>
     <string name="driver">Motorista</string>
+    <string name="own_profile">Own profile</string>
+    <string name="notifications">Notificações</string>
+    <string name="logo">Imagem do logotipo</string>
 </resources>

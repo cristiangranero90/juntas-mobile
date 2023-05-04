@@ -7,4 +7,7 @@
     <string name="passenger">Pasajera</string>
     <string name="driver_item">Ir a conductora</string>
     <string name="driver">Conductora</string>
+    <string name="own_profile">Perfil propio</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="logo">Imagen logo</string>
 </resources>

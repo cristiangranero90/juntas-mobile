@@ -6,4 +6,7 @@
     <string name="passenger">Passenger</string>
     <string name="driver_item">Driver item</string>
     <string name="driver">Driver</string>
+    <string name="logo">Logo image</string>
+    <string name="own_profile">Own profile</string>
+    <string name="notifications">Notifications</string>
 </resources>
