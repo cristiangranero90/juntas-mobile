@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Juntas-App</string>
+    <string name="home">Home</string>
+    <string name="go_to_home">Go to home</string>
+    <string name="passenger_item">Passenger item</string>
+    <string name="passenger">Passenger</string>
+    <string name="driver_item">Driver item</string>
+    <string name="driver">Driver</string>
 </resources>

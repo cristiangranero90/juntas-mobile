@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Juntas-App</string>
+    <string name="home">Home</string>
+    <string name="go_to_home">Ir al inicio</string>
+    <string name="passenger_item">Ir a pasajera</string>
+    <string name="passenger">Pasajera</string>
+    <string name="driver_item">Ir a conductora</string>
+    <string name="driver">Conductora</string>
+</resources>
