@@ -49,6 +49,9 @@ android {
 }
 
 dependencies {
+    //Google Maps
+    implementation 'com.google.maps.android:maps-compose:2.11.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     //Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.44.2"
