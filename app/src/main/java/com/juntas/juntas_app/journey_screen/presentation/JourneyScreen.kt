@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.juntas.juntas_app.shared_components.BottomBar
 import com.juntas.juntas_app.shared_components.TopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,8 +19,8 @@ fun JourneyScreen() {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopBar() } ,
-        bottomBar = { },
+        topBar = { TopBar({/*TODO: Set clicked functions */}, {}, "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg") } ,
+        bottomBar = { BottomBar() },
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             Text(text = "new text", style = MaterialTheme.typography.bodyLarge)
