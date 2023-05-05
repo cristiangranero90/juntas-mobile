@@ -20,6 +20,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        manifestPlaceholders = [MAPS_API_KEY: "\"${properties.getProperty('API_KEY')}\""]
     }
 
     buildTypes {
@@ -37,6 +40,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.3.2'
