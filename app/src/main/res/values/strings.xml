@@ -9,6 +9,7 @@
     <string name="logo">Logo image</string>
     <string name="own_profile">Own profile</string>
     <string name="notifications">Notifications</string>
-    <string name="where_you">"Where you "</string>
+    <string name="where_do_you">"Where do you "</string>
     <string name="want_to_go">want to go?</string>
+    <string name="search_for_a_driver">"Search for a driver: "</string>
 </resources>
