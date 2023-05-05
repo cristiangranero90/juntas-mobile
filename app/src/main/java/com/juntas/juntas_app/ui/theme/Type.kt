@@ -26,7 +26,7 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = Raleway,
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
+        fontSize = 26.sp
     ),
     titleLarge = TextStyle(
         fontFamily = Raleway,

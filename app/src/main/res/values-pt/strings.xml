@@ -10,4 +10,6 @@
     <string name="own_profile">Own profile</string>
     <string name="notifications">Notificações</string>
     <string name="logo">Imagem do logotipo</string>
+    <string name="where_you">Onde você</string>
+    <string name="want_to_go">quer ir?</string>
 </resources>
