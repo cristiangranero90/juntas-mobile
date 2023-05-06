@@ -15,4 +15,7 @@
     <string name="search_for_a_driver">"Encontre seu motorista: "</string>
     <string name="from">Desde onde</string>
     <string name="to">Até onde</string>
+    <string name="how_many">Quantos são?</string>
+    <string name="baggage">Carrega bagagem?</string>
+    <string name="when_string">Quando?</string>
 </resources>

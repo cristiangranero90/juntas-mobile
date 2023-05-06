@@ -48,6 +48,30 @@ fun MapsView(
             LargeButtonOverlay(buttonTittle = stringResource(id = R.string.from))
 
             LargeButtonOverlay(buttonTittle = stringResource(id = R.string.to))
+
+            //Column
+            Column(
+                modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 34.dp),
+                verticalArrangement = Arrangement.spacedBy(7.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                MediumButtonsOverlay(
+                    buttonText = stringResource(R.string.when_string),
+                    buttonWidth = 148.dp,
+                    onClick = { /*TODO*/ })
+
+                MediumButtonsOverlay(
+                    buttonText = stringResource(R.string.how_many),
+                    buttonWidth = 177.dp,
+                    onClick = { /*TODO*/ })
+
+                MediumButtonsOverlay(
+                    buttonText = stringResource(R.string.baggage),
+                    buttonWidth = 198.dp,
+                    onClick = { /*TODO*/ })
+            }
         }
     }
 }

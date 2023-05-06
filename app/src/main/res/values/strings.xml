@@ -14,4 +14,7 @@
     <string name="search_for_a_driver">"Search for a driver: "</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="when_string">"When? "</string>
+    <string name="how_many">"How many? "</string>
+    <string name="baggage">"Baggage? "</string>
 </resources>
