@@ -13,4 +13,6 @@
     <string name="where_do_you">¿A dónde</string>
     <string name="want_to_go">querés ir?</string>
     <string name="search_for_a_driver">"Buscá a tu conductora: "</string>
+    <string name="from">Desde</string>
+    <string name="to">Hasta</string>
 </resources>

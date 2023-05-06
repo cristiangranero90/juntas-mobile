@@ -12,4 +12,6 @@
     <string name="where_do_you">"Where do you "</string>
     <string name="want_to_go">want to go?</string>
     <string name="search_for_a_driver">"Search for a driver: "</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>
