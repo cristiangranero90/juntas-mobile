@@ -17,7 +17,7 @@ class RoutesRepositoryImpl(
                     origin = origin ,
                     destination = destination ,
                     region = "es" ,
-                    api_key = BuildConfig.MAPS_API_KEY
+                    api_key = BuildConfig.DIRECTIONS_API
                 )
             )
         } catch (e: Exception) {

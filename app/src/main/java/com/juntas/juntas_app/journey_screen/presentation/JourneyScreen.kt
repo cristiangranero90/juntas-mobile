@@ -41,7 +41,7 @@ fun JourneyScreen(
             
             item { TittleSearch() }
 
-            item { MapsView({ viewModel.getRoute("", "")}) }
+            item { MapsView({ viewModel.getRoute()}) }
         }
     }
 }
