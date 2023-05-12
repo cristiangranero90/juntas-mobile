@@ -18,4 +18,6 @@
     <string name="how_many">Quantos são?</string>
     <string name="baggage">Carrega bagagem?</string>
     <string name="when_string">Quando?</string>
+    <string name="accept">Aceitar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
