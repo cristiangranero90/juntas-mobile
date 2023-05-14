@@ -22,4 +22,7 @@
     <string name="cancel">Cancelar</string>
     <string name="adult">Adulto</string>
     <string name="minors">Menores</string>
+    <string name="big_baggage">Grande</string>
+    <string name="medium_baggage">Média</string>
+    <string name="small_baggage">Pequeno</string>
 </resources>

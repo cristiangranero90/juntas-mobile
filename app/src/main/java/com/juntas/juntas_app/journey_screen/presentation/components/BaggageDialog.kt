@@ -92,9 +92,9 @@ fun BaggageDialog(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                RowItems(type = "Grande")
-                RowItems(type = "Mediano")
-                RowItems(type = "Chico")
+                RowItems(type = stringResource(R.string.big_baggage))
+                RowItems(type = stringResource(R.string.medium_baggage))
+                RowItems(type = stringResource(R.string.small_baggage))
             }
         }
     )

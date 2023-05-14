@@ -21,4 +21,7 @@
     <string name="cancel">Cancel</string>
     <string name="adult">Adult</string>
     <string name="minors">Minors</string>
+    <string name="big_baggage">Big</string>
+    <string name="medium_baggage">Medium</string>
+    <string name="small_baggage">Small</string>
 </resources>
