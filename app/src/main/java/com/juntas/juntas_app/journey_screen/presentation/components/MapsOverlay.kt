@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EditCalendar
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.Luggage
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,12 +27,17 @@ fun MapsOverlay(
     baggageClicked: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    val context = LocalContext.current
     val showDialog = remember {
         mutableStateOf(false)
     }
     val showCalendar = remember {
         mutableStateOf(false)
+    }
+    val showBaggage = remember {
+        mutableStateOf(false)
+    }
+    if (showBaggage.value) {
+        BaggageDialog(onDismiss = { showBaggage.value = false })
     }
     if (showDialog.value){
         ManyDialog({showDialog.value = false})
@@ -42,7 +51,7 @@ fun MapsOverlay(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp, top = 78.dp),
+            .padding(start = 20.dp , end = 20.dp , top = 78.dp),
         verticalArrangement = Arrangement.spacedBy(34.dp),
         horizontalAlignment = Alignment.Start
     ) {
@@ -59,19 +68,22 @@ fun MapsOverlay(
             horizontalAlignment = Alignment.Start
         ) {
             MediumButtonsOverlay(
+                icon = Icons.Default.EditCalendar,
                 buttonText = stringResource(R.string.when_string),
                 buttonWidth = 148.dp,
                 onClick = { showCalendar.value = true })
 
             MediumButtonsOverlay(
+                icon = Icons.Default.Group,
                 buttonText = stringResource(R.string.how_many),
                 buttonWidth = 177.dp,
                 onClick = { showDialog.value = true })
 
             MediumButtonsOverlay(
+                icon = Icons.Default.Luggage,
                 buttonText = stringResource(R.string.baggage),
                 buttonWidth = 198.dp,
-                onClick = { baggageClicked() })
+                onClick = { showBaggage.value = true })
         }
     }
 

@@ -2,17 +2,16 @@ package com.juntas.juntas_app.journey_screen.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,23 +26,16 @@ import androidx.compose.ui.unit.dp
 import com.juntas.juntas_app.R
 
 @Composable
-fun ManyDialog(
+fun BaggageDialog(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val passengerQuantity = remember {
-        mutableStateOf(0)
-    }
-    val childrenQuantity = remember {
-        mutableStateOf(0)
-    }
     val ready = remember {
         mutableStateOf(false)
     }
     if (ready.value) {
         onDismiss()
     }
-
     AlertDialog(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.background,
@@ -59,16 +51,15 @@ fun ManyDialog(
                 Button(
                     onClick = {
                         ready.value = true
-
-                              },
-                    shape = RoundedCornerShape(10.dp),
+                    },
+                    shape = RoundedCornerShape(10.dp) ,
                     elevation = ButtonDefaults.buttonElevation(
                         defaultElevation = 10.dp,
                         pressedElevation = 2.dp,
                         focusedElevation = 10.dp
                     )
                 ) {
-                    Text(text = stringResource(id = R.string.accept), style = MaterialTheme.typography.titleSmall)
+                    Text(text = stringResource(id = R.string.accept) , style = MaterialTheme.typography.titleSmall)
                 }
             }
         },
@@ -92,7 +83,7 @@ fun ManyDialog(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = stringResource(id = R.string.passenger), style = MaterialTheme.typography.headlineLarge)
+                    Text(text = stringResource(id = R.string.baggage) , style = MaterialTheme.typography.headlineLarge)
                 }
             }
         },
@@ -101,68 +92,33 @@ fun ManyDialog(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-
-                    Box(
-                        modifier = Modifier.width(130.dp)
-                    ){
-                        Text(text = stringResource(R.string.adult))
-                    }
-
-                    Box(
-                        modifier = Modifier
-                    ) {
-                        Row(
-                            modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            PassengersIncrement(
-                                number = passengerQuantity.value ,
-                                onMinus = { passengerQuantity.value -= 1 } ,
-                                onPlus = { passengerQuantity.value += 1 })
-                        }
-                    }
-                }
-                //Menores
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-
-                    Box(
-                        modifier = Modifier.width(130.dp)
-                    ){
-                        Text(text = stringResource(R.string.minors))
-                    }
-
-                    Box(
-                        modifier = Modifier
-                    ) {
-                        Row(
-                            modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            PassengersIncrement(
-                                number = childrenQuantity.value ,
-                                onMinus = { childrenQuantity.value -= 1 } ,
-                                onPlus = { childrenQuantity.value += 1 })
-                        }
-                    }
-                }
+                RowItems(type = "Grande")
+                RowItems(type = "Mediano")
+                RowItems(type = "Chico")
             }
         }
     )
 }
 
 @Composable
-@Preview
-fun ManyDialogPreview() {
-    ManyDialog({})
+fun RowItems(
+    type: String,
+){
+    val checkedBox = remember {
+        mutableStateOf(false)
+    }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = type)
+        Checkbox(checked =  checkedBox.value, onCheckedChange = {checkedBox.value = !checkedBox.value})
+
+    }
+}
+@Composable
+@Preview(showSystemUi = true, showBackground = true)
+fun BaggageDialogPreview() {
+    BaggageDialog({})
 }

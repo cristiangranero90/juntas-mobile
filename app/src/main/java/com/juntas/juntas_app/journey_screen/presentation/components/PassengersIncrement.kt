@@ -1,12 +1,13 @@
 package com.juntas.juntas_app.journey_screen.presentation.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,16 +30,18 @@ fun PassengersIncrement(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HomeFilterSettingsButton(onClick = onMinus, icon = Icons.Default.KeyboardArrowDown)
-        Text(text = "$number")
-        HomeFilterSettingsButton(onClick = onPlus, icon = Icons.Default.KeyboardArrowUp)
+        HomeFilterSettingsButton(onClick = onMinus, icon = Icons.Default.Remove)
+        Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
+            Text(text = "$number")
+        }
+        HomeFilterSettingsButton(onClick = onPlus, icon = Icons.Default.Add)
     }
 }
 
 @Composable
 fun HomeFilterSettingsButton(
     onClick: () -> Unit ,
-    icon: ImageVector? ,
+    icon: ImageVector ,
     modifier: Modifier = Modifier
 ){
     OutlinedButton(

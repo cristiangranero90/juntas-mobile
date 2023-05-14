@@ -20,4 +20,6 @@
     <string name="when_string">¿Cuándo?</string>
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="adult">Adultas</string>
+    <string name="minors">Menores</string>
 </resources>

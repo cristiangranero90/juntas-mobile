@@ -19,4 +19,6 @@
     <string name="baggage">"Baggage? "</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
+    <string name="adult">Adult</string>
+    <string name="minors">Minors</string>
 </resources>
