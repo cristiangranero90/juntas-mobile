@@ -15,7 +15,6 @@ import com.juntas.juntas_app.journey_screen.presentation.components.TittleSearch
 import com.juntas.juntas_app.shared_components.BottomBar
 import com.juntas.juntas_app.shared_components.TopBar
 
-
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun JourneyScreen(
@@ -41,7 +40,12 @@ fun JourneyScreen(
             
             item { TittleSearch() }
 
-            item { MapsView({ viewModel.getRoute()}) }
+            item { MapsView(
+                { passengers, children ->
+                    viewModel.passengerQuntity(passengers)
+                    viewModel.childrenQuantity(children)
+                } ,
+                { viewModel.getRoute()}) }
         }
     }
 }

@@ -18,8 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -39,9 +37,6 @@ fun DatePickerColored(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    val date = remember {
-        mutableStateOf(1L)
-    }
     val datePickerState = rememberDatePickerState()
 
     DatePickerDialog(
@@ -71,6 +66,7 @@ fun DatePickerColored(
                            //date.value = datePickerState.selectedDateMillis!!
                             val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                             calendar.timeInMillis = datePickerState.selectedDateMillis ?: 1782368276
+
                             val stringDate = "${calendar[Calendar.DATE]} / ${calendar[Calendar.MONTH]+1} / ${calendar[Calendar.YEAR]}"
 
                             Toast.makeText(context, stringDate, Toast.LENGTH_SHORT).show()

@@ -34,7 +34,7 @@ class JourneyViewModel @Inject constructor(
                             "BAD")
                         )
                 )
-                Log.i("MSG: ", "${state.response.status}")
+                Log.i("MSG: ", state.response.status)
             } else {
                 Log.i("ERROR", "Msg")
             }
@@ -47,35 +47,20 @@ class JourneyViewModel @Inject constructor(
         )
     }
 
-    fun morePassenger() {
-        if (state.passengers in 0..3) {
+    fun passengerQuntity(quantity: Int ) {
+        if (quantity in 0..3) {
             state = state.copy(
-                passengers = state.passengers + 1
+                passengers = quantity
             )
         }
     }
-    fun minusPassenger() {
-        if (state.passengers in 0..3) {
+    fun childrenQuantity(quantity: Int) {
+        if (quantity in 0..3) {
             state = state.copy(
-                passengers = state.passengers - 1
+                passengers = quantity
             )
         }
     }
-    fun moreChildren() {
-        if (state.passengers in 0..3) {
-            state = state.copy(
-                children = state.children + 1
-            )
-        }
-    }
-    fun minusChildren() {
-        if (state.passengers in 0..3) {
-            state = state.copy(
-                children = state.children - 1
-            )
-        }
-    }
-
     fun setError(errorStatus: ErrorStatus) {
         state = state.copy(
             error = errorStatus

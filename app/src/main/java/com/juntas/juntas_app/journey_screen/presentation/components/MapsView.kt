@@ -21,6 +21,7 @@ import com.google.maps.android.compose.rememberMarkerState
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MapsView(
+    manyQuantity: (Int, Int) -> Unit,
     baggageClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -47,7 +48,7 @@ fun MapsView(
        }
 
         //
-        MapsOverlay({ baggageClicked() })
+        MapsOverlay( manyQuantity = {i, i2 -> manyQuantity(i, i2)}, { baggageClicked() })
     }
 }
 
@@ -55,5 +56,5 @@ fun MapsView(
 @Composable
 @Preview(showBackground = true)
 fun MapsViewPreview() {
-    MapsView({})
+    MapsView({i, i2 ->  },{})
 }

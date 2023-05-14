@@ -4,7 +4,7 @@ import com.juntas.juntas_app.journey_screen.presentation.data.dto.SpecificRoute
 
 data class JourneyState (
     val isLoading: Boolean = false ,
-    val departureDate: String = "" ,
+    val departureDate: Long = 0L,
     val passengers: Int = 0 ,
     val children: Int = 0 ,
     val baggage: BaggageStatus = BaggageStatus.NONE ,

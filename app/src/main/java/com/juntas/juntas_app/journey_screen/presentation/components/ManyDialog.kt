@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -29,19 +30,20 @@ import com.juntas.juntas_app.R
 @Composable
 fun ManyDialog(
     onDismiss: () -> Unit,
+    onReady: (Int, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val passengerQuantity = remember {
+    val passengerQuantity = rememberSaveable {
         mutableStateOf(0)
     }
-    val childrenQuantity = remember {
+    val childrenQuantity = rememberSaveable {
         mutableStateOf(0)
     }
     val ready = remember {
         mutableStateOf(false)
     }
     if (ready.value) {
-        onDismiss()
+        onReady(passengerQuantity.value, childrenQuantity.value)
     }
 
     AlertDialog(
@@ -164,5 +166,5 @@ fun ManyDialog(
 @Composable
 @Preview
 fun ManyDialogPreview() {
-    ManyDialog({})
+    //ManyDialog({},{  })
 }

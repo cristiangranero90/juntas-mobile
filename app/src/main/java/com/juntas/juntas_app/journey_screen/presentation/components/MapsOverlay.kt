@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +23,7 @@ import com.juntas.juntas_app.R
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MapsOverlay(
+    manyQuantity: (Int, Int) -> Unit,
     baggageClicked: () -> Unit,
     modifier: Modifier = Modifier
 ){
@@ -36,11 +36,22 @@ fun MapsOverlay(
     val showBaggage = remember {
         mutableStateOf(false)
     }
+    val manyQuantity = remember {
+        mutableStateOf("")
+    }
     if (showBaggage.value) {
         BaggageDialog(onDismiss = { showBaggage.value = false })
     }
     if (showDialog.value){
-        ManyDialog({showDialog.value = false})
+        ManyDialog(
+            onDismiss = { showDialog.value = false },
+            onReady = {
+                i, i2 ->
+                manyQuantity(i, i2)
+                showDialog.value = false
+                manyQuantity.value = i.toString()
+            }
+        )
     }
     if (showCalendar.value) {
         DatePickerColored(
@@ -75,7 +86,9 @@ fun MapsOverlay(
 
             MediumButtonsOverlay(
                 icon = Icons.Default.Group,
-                buttonText = stringResource(R.string.how_many),
+                buttonText = if(manyQuantity.value.isBlank()) stringResource(id = R.string.how_many) else stringResource(
+                    id = R.string.adult
+                ) + " ${manyQuantity.value}" ,
                 buttonWidth = 177.dp,
                 onClick = { showDialog.value = true })
 
@@ -85,6 +98,7 @@ fun MapsOverlay(
                 buttonWidth = 198.dp,
                 onClick = { showBaggage.value = true })
         }
+
     }
 
 
@@ -94,5 +108,5 @@ fun MapsOverlay(
 @Composable
 @Preview(showBackground = true)
 fun MapsOverlayPreview(){
-    MapsOverlay( {} )
+    MapsOverlay( manyQuantity = {i, i2 -> }, baggageClicked = {} )
 }
