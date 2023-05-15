@@ -1,16 +1,20 @@
 package com.juntas.juntas_app.journey_screen.presentation.components
 
 import android.os.Build
-import android.transition.Fade
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animate
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,6 +31,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,13 +41,14 @@ import java.util.Calendar
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MapsOverlay(
-    baggageClicked: () -> Unit,
-    passenger: Int,
-    children: Int,
-    onMinusChildren: () -> Unit,
-    onPlusChildren: () -> Unit,
-    onMinusPassenger: () -> Unit,
-    onPlusPassenger: () -> Unit,
+    onContinueClicked: () -> Unit ,
+    passenger: Int ,
+    children: Int ,
+    toPreferenceContext: Boolean ,
+    onMinusChildren: () -> Unit ,
+    onPlusChildren: () -> Unit ,
+    onMinusPassenger: () -> Unit ,
+    onPlusPassenger: () -> Unit ,
     modifier: Modifier = Modifier
 ){
     val origin = remember {
@@ -114,10 +120,35 @@ fun MapsOverlay(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 20.dp , end = 20.dp , top = 78.dp),
+            .padding(start = 20.dp , end = 20.dp , top = if (!toPreferenceContext) 78.dp else 20.dp),
         verticalArrangement = Arrangement.spacedBy(34.dp),
         horizontalAlignment = Alignment.Start
     ) {
+        //Text on preference
+        if (toPreferenceContext) {
+            Row(
+                modifier = Modifier.fillMaxWidth() ,
+                verticalAlignment = Alignment.CenterVertically ,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    text = stringResource(R.string.great) ,
+                    style = MaterialTheme.typography.headlineLarge ,
+                    color = Color.White
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth() ,
+                verticalAlignment = Alignment.CenterVertically ,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = stringResource(R.string.check_the_information_data) ,
+                    style = MaterialTheme.typography.titleLarge ,
+                    color = Color.White
+                )
+            }
+        }
         LargeButtonOverlay(
             buttonTittle = origin.value.ifBlank { stringResource(id = R.string.from) },
             { origin.value = it }
@@ -131,15 +162,16 @@ fun MapsOverlay(
         Column(
             modifier
                 .fillMaxWidth()
-                .padding(vertical = 34.dp),
+                .padding(vertical = 24.dp),
             verticalArrangement = Arrangement.spacedBy(7.dp),
             horizontalAlignment = Alignment.Start
         ) {
+
             MediumButtonsOverlay(
                 complete = dateCalendar.value != 0L,
                 icon = Icons.Default.EditCalendar,
                 buttonText = if (dateCalendar.value == 0L) stringResource(R.string.when_string)
-                    else calendar.get(Calendar.DATE).toString() + "/"
+                    else (calendar.get(Calendar.DATE) + 1).toString() + "/"
                         + ((calendar.get(Calendar.MONTH)) + 1).toString() + "/"
                         + calendar.get(Calendar.YEAR).toString() ,
                 buttonWidth = 148.dp,
@@ -162,14 +194,30 @@ fun MapsOverlay(
                 buttonWidth = 198.dp,
                 onClick = { showBaggage.value = true })
 
-                AnimatedVisibility(
-                    visible = dateCalendar.value != 0L
-                            && manyQuantity.value.isNotBlank()
-                            && baggageReady.value
-                            && origin.value.isNotBlank()
-                            && destination.value.isNotBlank(),
-                    enter = fadeIn(initialAlpha = 1f),
-                    exit = fadeOut(targetAlpha = 0.3f)
+            //Text to preference context
+            AnimatedVisibility(
+                visible = toPreferenceContext,
+                enter = fadeIn() + slideInHorizontally(),
+                exit = fadeOut() + slideOutHorizontally()
+            ) {
+                Spacer(modifier = Modifier.height(50.dp))
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = stringResource(R.string.one_more_step),
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = Color.White
+                    )
+                }
+            }
+            //Continue button
+            AnimatedVisibility(
+                visible = dateCalendar.value != 0L
+                        && manyQuantity.value.isNotBlank()
+                        && baggageReady.value
+                        && origin.value.isNotBlank()
+                        && destination.value.isNotBlank(),
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically()
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -177,7 +225,7 @@ fun MapsOverlay(
                         horizontalArrangement = Arrangement.End
                     ) {
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { onContinueClicked() },
                             shape = RoundedCornerShape(10.dp),
                             elevation = ButtonDefaults.buttonElevation(
                                 defaultElevation = 10.dp,
@@ -186,7 +234,8 @@ fun MapsOverlay(
                             )
                         ) {
                             Text(
-                                text = stringResource(R.string.continue_button) ,
+                                text = if (!toPreferenceContext) stringResource(R.string.continue_button)
+                                    else stringResource(R.string.choose_your_preferences) ,
                                 style = MaterialTheme.typography.titleSmall,
                             )
                         }
@@ -200,5 +249,5 @@ fun MapsOverlay(
 @Composable
 @Preview(showBackground = true)
 fun MapsOverlayPreview(){
-    MapsOverlay( baggageClicked = {}, 0,0, {},{},{},{} )
+    MapsOverlay( onContinueClicked = {}, 0,0, false,{},{},{},{} )
 }

@@ -27,4 +27,8 @@
     <string name="small_baggage">Chico</string>
     <string name="already_selected">Equipaje agregado</string>
     <string name="continue_button">Continuar</string>
+    <string name="one_more_step">Un pasito más</string>
+    <string name="choose_your_preferences">Elegí tus preferencias</string>
+    <string name="great">Genial!</string>
+    <string name="check_the_information_data">Revisá que esté todo ok</string>
 </resources>

@@ -2,10 +2,15 @@ package com.juntas.juntas_app.journey_screen.presentation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,6 +27,9 @@ fun JourneyScreen(
     modifier: Modifier = Modifier
 ) {
     val state = viewModel.state
+    val toPreferenceContext = remember {
+        mutableStateOf(false)
+    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -35,15 +43,30 @@ fun JourneyScreen(
 
         ) {
 
-            item { TittleBox() }
-            
-            item { TittleSearch() }
-
+            item {
+                AnimatedVisibility(
+                    visible = !toPreferenceContext.value,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    TittleBox()
+                }
+            }
+            item {
+                AnimatedVisibility(
+                    visible = !toPreferenceContext.value,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    TittleSearch()
+                }
+            }
             item {
                 MapsView(
-                    baggageClicked = { /*TODO*/ } ,
+                    onContinueClicked = { toPreferenceContext.value = true } ,
                     passenger = state.passengers ,
                     children =  state.children,
+                    toPreferenceContext = toPreferenceContext.value,
                     onMinusChildren = { viewModel.childrenMinus() },
                     onPlusChildren = { viewModel.childrenPlus() },
                     onMinusPassenger = { viewModel.passengerMinus() },

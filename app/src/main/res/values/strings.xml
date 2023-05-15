@@ -20,10 +20,14 @@
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
     <string name="adult">Adults</string>
-    <string name="minors">Minors</string>
+    <string name="minors">Childrens</string>
     <string name="big_baggage">Big</string>
     <string name="medium_baggage">Medium</string>
     <string name="small_baggage">Small</string>
     <string name="already_selected">Already selected</string>
     <string name="continue_button">Continue</string>
+    <string name="one_more_step">"One more step! "</string>
+    <string name="choose_your_preferences">Choose your preferences</string>
+    <string name="great">Great!</string>
+    <string name="check_the_information_data">Check that everything is OK</string>
 </resources>

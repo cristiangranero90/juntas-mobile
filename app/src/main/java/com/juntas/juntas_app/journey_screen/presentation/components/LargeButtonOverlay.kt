@@ -85,6 +85,7 @@ fun LargeButtonOverlay(
                 text = { Text(text = "Córdoba") },
                 onClick = {
                     selectedItem.value = "Cordoba"
+                    buttonClicked(selectedItem.value)
                     onClick.value = false
                           },
             )

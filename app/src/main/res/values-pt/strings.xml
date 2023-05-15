@@ -27,4 +27,8 @@
     <string name="small_baggage">Pequeno</string>
     <string name="already_selected">Bagagem adicionada</string>
     <string name="continue_button">Continuar</string>
+    <string name="one_more_step">Um passo mais!</string>
+    <string name="choose_your_preferences">Escolha suas preferências</string>
+    <string name="great">Brilhante!</string>
+    <string name="check_the_information_data">Verifique se está tudo ok</string>
 </resources>
