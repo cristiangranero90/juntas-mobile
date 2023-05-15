@@ -23,6 +23,7 @@ import com.juntas.juntas_app.shared_components.TopBar
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun JourneyScreen(
+    goAhead: () -> Unit,
     viewModel: JourneyViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -63,7 +64,10 @@ fun JourneyScreen(
             }
             item {
                 MapsView(
-                    onContinueClicked = { toPreferenceContext.value = true } ,
+                    onContinueClicked = {
+                        if (!toPreferenceContext.value) toPreferenceContext.value = true
+                            else goAhead()
+                                        } ,
                     passenger = state.passengers ,
                     children =  state.children,
                     toPreferenceContext = toPreferenceContext.value,
@@ -81,5 +85,5 @@ fun JourneyScreen(
 @Composable
 @Preview(showBackground = true)
 fun JourneyScreenPreview() {
-    JourneyScreen()
+    JourneyScreen({})
 }

@@ -4,13 +4,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.juntas.juntas_app.journey_screen.presentation.domain.RoutesRepository
 import com.juntas.juntas_app.preference_screen.presentation.PreferenceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class PreferenceViewModel @Inject constructor(
-
+    private val repository: RoutesRepository
 ) : ViewModel() {
     var state by mutableStateOf(PreferenceState())
         private set
