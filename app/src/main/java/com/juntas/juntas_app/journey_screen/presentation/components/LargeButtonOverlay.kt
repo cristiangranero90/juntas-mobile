@@ -31,6 +31,7 @@ import com.juntas.juntas_app.R
 @Composable
 fun LargeButtonOverlay(
     buttonTittle: String ,
+    buttonClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val selectedItem = rememberSaveable {
@@ -71,12 +72,12 @@ fun LargeButtonOverlay(
                 .fillMaxWidth(0.9f)
                 .background(MaterialTheme.colorScheme.background),
             properties = PopupProperties()
-
         ) {
             DropdownMenuItem(
                 text = { Text(text = "Buenos Aires") },
                 onClick = {
                     selectedItem.value = "Buenos Aires"
+                    buttonClicked(selectedItem.value)
                     onClick.value = false
                           },
             )
@@ -89,11 +90,10 @@ fun LargeButtonOverlay(
             )
         }
     }
-
 }
 
 @Composable
 @Preview
 fun LargeButtonOverlayPreview() {
-    LargeButtonOverlay(stringResource(id = R.string.logo))
+    LargeButtonOverlay(stringResource(id = R.string.logo), {})
 }

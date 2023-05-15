@@ -45,6 +45,12 @@ fun MapsOverlay(
     onPlusPassenger: () -> Unit,
     modifier: Modifier = Modifier
 ){
+    val origin = remember {
+        mutableStateOf("")
+    }
+    val destination = remember {
+        mutableStateOf("")
+    }
     val showDialog = remember {
         mutableStateOf(false)
     }
@@ -112,9 +118,14 @@ fun MapsOverlay(
         verticalArrangement = Arrangement.spacedBy(34.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        LargeButtonOverlay(buttonTittle = stringResource(id = R.string.from))
-
-        LargeButtonOverlay(buttonTittle = stringResource(id = R.string.to))
+        LargeButtonOverlay(
+            buttonTittle = origin.value.ifBlank { stringResource(id = R.string.from) },
+            { origin.value = it }
+        )
+        LargeButtonOverlay(
+            buttonTittle = destination.value.ifBlank { stringResource(id = R.string.to) },
+            { destination.value = it }
+        )
 
         //Column with the latest three buttons
         Column(
@@ -151,14 +162,14 @@ fun MapsOverlay(
                 buttonWidth = 198.dp,
                 onClick = { showBaggage.value = true })
 
-
-
                 AnimatedVisibility(
                     visible = dateCalendar.value != 0L
                             && manyQuantity.value.isNotBlank()
-                            && baggageReady.value,
+                            && baggageReady.value
+                            && origin.value.isNotBlank()
+                            && destination.value.isNotBlank(),
                     enter = fadeIn(initialAlpha = 1f),
-                    exit = fadeOut(targetAlpha = 2f)
+                    exit = fadeOut(targetAlpha = 0.3f)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
