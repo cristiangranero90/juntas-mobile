@@ -31,4 +31,17 @@
     <string name="choose_your_preferences">Escolha suas preferências</string>
     <string name="great">Brilhante!</string>
     <string name="check_the_information_data">Verifique se está tudo ok</string>
+    <string name="my_preferences">Minhas preferências</string>
+    <string name="smokers_accepted">Eu aceito fumantes</string>
+    <string name="pet_friendly">Petfriendly</string>
+    <string name="accept__children">Aceito a viagem com crianças</string>
+    <string name="helps_driver">Ajuda o motorista a</string>
+    <string name="have_safer">ter uma viagem mais</string>
+    <string name="comfortable_trip">segura e confortável!</string>
+    <string name="health_information">Informações físicas e de saúde</string>
+    <string name="another_info">"Outras informações "</string>
+    <string name="information">necessárias</string>
+    <string name="allergy">Alergia</string>
+    <string name="chairwheel">Cadeira</string>
+    <string name="medication">Medicamento</string>
 </resources>

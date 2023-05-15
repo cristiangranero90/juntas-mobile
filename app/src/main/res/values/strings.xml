@@ -30,4 +30,17 @@
     <string name="choose_your_preferences">Choose your preferences</string>
     <string name="great">Great!</string>
     <string name="check_the_information_data">Check that everything is OK</string>
+    <string name="my_preferences">My preferences</string>
+    <string name="smokers_accepted">Smokers accepted</string>
+    <string name="pet_friendly">Pet Friendly</string>
+    <string name="accept__children">I accept the trip with children</string>
+    <string name="helps_driver">Helps the driver to</string>
+    <string name="have_safer">have a safer and</string>
+    <string name="comfortable_trip">more comfortable trip!</string>
+    <string name="health_information">Physical and health information</string>
+    <string name="another_info">Other necessary</string>
+    <string name="information">information</string>
+    <string name="allergy">Allergy</string>
+    <string name="chairwheel">ChairWheel</string>
+    <string name="medication">Medication</string>
 </resources>
