@@ -30,22 +30,15 @@ import com.juntas.juntas_app.R
 @Composable
 fun ManyDialog(
     onDismiss: () -> Unit,
-    onReady: (Int, Int) -> Unit,
+    onReady: () -> Unit,
+    passenger: Int,
+    children: Int,
+    onMinusChildren: () -> Unit,
+    onPlusChildren: () -> Unit,
+    onPlusPassenger: () -> Unit,
+    onMinusPassenger: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val passengerQuantity = rememberSaveable {
-        mutableStateOf(0)
-    }
-    val childrenQuantity = rememberSaveable {
-        mutableStateOf(0)
-    }
-    val ready = remember {
-        mutableStateOf(false)
-    }
-    if (ready.value) {
-        onReady(passengerQuantity.value, childrenQuantity.value)
-    }
-
     AlertDialog(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.background,
@@ -60,7 +53,7 @@ fun ManyDialog(
             ) {
                 Button(
                     onClick = {
-                        ready.value = true
+                        onReady()
 
                               },
                     shape = RoundedCornerShape(10.dp),
@@ -124,9 +117,10 @@ fun ManyDialog(
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
                             PassengersIncrement(
-                                number = passengerQuantity.value ,
-                                onMinus = { passengerQuantity.value -= 1 } ,
-                                onPlus = { passengerQuantity.value += 1 })
+                                number = passenger ,
+                                onMinus = { onMinusPassenger() } ,
+                                onPlus = { onPlusPassenger() }
+                            )
                         }
                     }
                 }
@@ -152,9 +146,10 @@ fun ManyDialog(
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
                             PassengersIncrement(
-                                number = childrenQuantity.value ,
-                                onMinus = { childrenQuantity.value -= 1 } ,
-                                onPlus = { childrenQuantity.value += 1 })
+                                number = children ,
+                                onMinus = { onMinusChildren() } ,
+                                onPlus = { onPlusChildren() }
+                            )
                         }
                     }
                 }

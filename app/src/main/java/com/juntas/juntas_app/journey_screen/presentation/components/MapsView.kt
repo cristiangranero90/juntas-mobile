@@ -21,8 +21,13 @@ import com.google.maps.android.compose.rememberMarkerState
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun MapsView(
-    manyQuantity: (Int, Int) -> Unit,
     baggageClicked: () -> Unit,
+    passenger: Int,
+    children: Int,
+    onMinusChildren: () -> Unit,
+    onPlusChildren: () -> Unit,
+    onMinusPassenger: () -> Unit,
+    onPlusPassenger: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val argentina = LatLng(-38.4192641, -63.5989206)
@@ -48,7 +53,15 @@ fun MapsView(
        }
 
         //
-        MapsOverlay( manyQuantity = {i, i2 -> manyQuantity(i, i2)}, { baggageClicked() })
+        MapsOverlay(
+            baggageClicked = { baggageClicked() },
+            passenger = passenger,
+            children = children,
+            onMinusChildren = {onMinusChildren()},
+            onPlusChildren = {onPlusChildren()},
+            onMinusPassenger = {onMinusPassenger()},
+            onPlusPassenger = {onPlusPassenger()}
+        )
     }
 }
 
@@ -56,5 +69,5 @@ fun MapsView(
 @Composable
 @Preview(showBackground = true)
 fun MapsViewPreview() {
-    MapsView({i, i2 ->  },{})
+    MapsView({},0,0,{},{},{},{})
 }

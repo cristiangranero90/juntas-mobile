@@ -30,11 +30,11 @@ fun PassengersIncrement(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HomeFilterSettingsButton(onClick = onMinus, icon = Icons.Default.Remove)
+        HomeFilterSettingsButton(onClick = { onMinus() }, icon = Icons.Default.Remove)
         Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
             Text(text = "$number")
         }
-        HomeFilterSettingsButton(onClick = onPlus, icon = Icons.Default.Add)
+        HomeFilterSettingsButton(onClick = { onPlus() }, icon = Icons.Default.Add)
     }
 }
 
@@ -45,7 +45,7 @@ fun HomeFilterSettingsButton(
     modifier: Modifier = Modifier
 ){
     OutlinedButton(
-        onClick = onClick,
+        onClick = { onClick() },
         colors = ButtonDefaults
             .outlinedButtonColors(
                 containerColor = MaterialTheme.colorScheme.primary

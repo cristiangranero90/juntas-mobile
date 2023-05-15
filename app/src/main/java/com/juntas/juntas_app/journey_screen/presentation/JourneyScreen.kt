@@ -23,7 +23,6 @@ fun JourneyScreen(
 ) {
     val state = viewModel.state
 
-
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = { TopBar({/*TODO: Set clicked functions */}, {}, "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg") } ,
@@ -40,12 +39,17 @@ fun JourneyScreen(
             
             item { TittleSearch() }
 
-            item { MapsView(
-                { passengers, children ->
-                    viewModel.passengerQuntity(passengers)
-                    viewModel.childrenQuantity(children)
-                } ,
-                { viewModel.getRoute()}) }
+            item {
+                MapsView(
+                    baggageClicked = { /*TODO*/ } ,
+                    passenger = state.passengers ,
+                    children =  state.children,
+                    onMinusChildren = { viewModel.childrenMinus() },
+                    onPlusChildren = { viewModel.childrenPlus() },
+                    onMinusPassenger = { viewModel.passengerMinus() },
+                    onPlusPassenger = { viewModel.passengerPlus() }
+                )
+            }
         }
     }
 }

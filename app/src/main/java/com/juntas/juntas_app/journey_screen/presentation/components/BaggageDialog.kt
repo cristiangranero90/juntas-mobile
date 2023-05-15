@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.juntas.juntas_app.R
@@ -28,14 +29,12 @@ import com.juntas.juntas_app.R
 @Composable
 fun BaggageDialog(
     onDismiss: () -> Unit,
+    onReady: () -> Unit,
+    onBaggageClicked: (Int) -> Unit,
+    baggageItems: MutableList<Boolean>,
     modifier: Modifier = Modifier
 ) {
-    val ready = remember {
-        mutableStateOf(false)
-    }
-    if (ready.value) {
-        onDismiss()
-    }
+
     AlertDialog(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.background,
@@ -50,7 +49,7 @@ fun BaggageDialog(
             ) {
                 Button(
                     onClick = {
-                        ready.value = true
+                        onReady()
                     },
                     shape = RoundedCornerShape(10.dp) ,
                     elevation = ButtonDefaults.buttonElevation(
@@ -59,7 +58,7 @@ fun BaggageDialog(
                         focusedElevation = 10.dp
                     )
                 ) {
-                    Text(text = stringResource(id = R.string.accept) , style = MaterialTheme.typography.titleSmall)
+                    Text(text = stringResource(id = R.string.accept), style = MaterialTheme.typography.titleSmall)
                 }
             }
         },
@@ -83,7 +82,11 @@ fun BaggageDialog(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = stringResource(id = R.string.baggage) , style = MaterialTheme.typography.headlineLarge)
+                    Text(
+                        text = stringResource(id = R.string.baggage) ,
+                        style = MaterialTheme.typography.headlineLarge,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
         },
@@ -92,9 +95,9 @@ fun BaggageDialog(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                RowItems(type = stringResource(R.string.big_baggage))
-                RowItems(type = stringResource(R.string.medium_baggage))
-                RowItems(type = stringResource(R.string.small_baggage))
+                RowItems(baggageItems[0], { onBaggageClicked(0) }, type = stringResource(R.string.big_baggage))
+                RowItems(baggageItems[1], { onBaggageClicked(1) }, type = stringResource(R.string.medium_baggage))
+                RowItems(baggageItems[2], { onBaggageClicked(2) }, type = stringResource(R.string.small_baggage))
             }
         }
     )
@@ -102,23 +105,24 @@ fun BaggageDialog(
 
 @Composable
 fun RowItems(
+    checked: Boolean,
+    clicked: () -> Unit,
     type: String,
 ){
-    val checkedBox = remember {
-        mutableStateOf(false)
-    }
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = type)
-        Checkbox(checked =  checkedBox.value, onCheckedChange = {checkedBox.value = !checkedBox.value})
-
+        Checkbox(
+            checked = checked,
+            onCheckedChange = { clicked() }
+        )
     }
 }
 @Composable
 @Preview(showSystemUi = true, showBackground = true)
 fun BaggageDialogPreview() {
-    BaggageDialog({})
+    BaggageDialog({}, {}, {}, MutableList<Boolean>(3) { it -> false})
 }

@@ -24,4 +24,6 @@
     <string name="big_baggage">Big</string>
     <string name="medium_baggage">Medium</string>
     <string name="small_baggage">Small</string>
+    <string name="already_selected">Already selected</string>
+    <string name="continue_button">Continue</string>
 </resources>

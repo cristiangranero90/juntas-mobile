@@ -47,17 +47,35 @@ class JourneyViewModel @Inject constructor(
         )
     }
 
-    fun passengerQuntity(quantity: Int ) {
-        if (quantity in 0..3) {
+    fun passengerPlus( ) {
+        if (state.passengers in 0..2) {
+            var aux = state.passengers + 1
             state = state.copy(
-                passengers = quantity
+                passengers = aux
             )
         }
     }
-    fun childrenQuantity(quantity: Int) {
-        if (quantity in 0..3) {
+    fun childrenPlus() {
+        if (state.children in 0..2) {
+            var aux = state.children + 1
             state = state.copy(
-                passengers = quantity
+                children = aux
+            )
+        }
+    }
+    fun passengerMinus() {
+        if (state.passengers in 1..3) {
+            var aux = state.passengers - 1
+            state = state.copy(
+                passengers = aux
+            )
+        }
+    }
+    fun childrenMinus() {
+        if (state.children in 1..3) {
+            var aux = state.children - 1
+            state = state.copy(
+                children = aux
             )
         }
     }

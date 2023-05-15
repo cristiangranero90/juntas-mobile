@@ -18,6 +18,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -27,16 +29,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import com.juntas.juntas_app.R
 import java.util.Calendar
-import java.util.TimeZone
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun DatePickerColored(
+    onClose: (Long) -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val currentDate = remember {
+        mutableStateOf(Calendar.getInstance())
+    }
     val datePickerState = rememberDatePickerState()
 
     DatePickerDialog(
@@ -63,15 +68,16 @@ fun DatePickerColored(
                     //Ready
                     Button(
                         onClick = {
-                           //date.value = datePickerState.selectedDateMillis!!
-                            val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                            calendar.timeInMillis = datePickerState.selectedDateMillis ?: 1782368276
-
-                            val stringDate = "${calendar[Calendar.DATE]} / ${calendar[Calendar.MONTH]+1} / ${calendar[Calendar.YEAR]}"
-
-                            Toast.makeText(context, stringDate, Toast.LENGTH_SHORT).show()
-
-                            onDismiss()
+                            if (datePickerState.selectedDateMillis != null) {
+                                if(datePickerState.selectedDateMillis!! >= currentDate.value.timeInMillis) {
+                                    currentDate.value.timeInMillis = datePickerState.selectedDateMillis!!
+                                    onClose(datePickerState.selectedDateMillis!!)
+                                } else {
+                                    Toast.makeText(context, "Invalid date", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(context, "The date was not selected", Toast.LENGTH_SHORT).show()
+                            }
                         },
                         shape = RoundedCornerShape(10.dp),
                         elevation = ButtonDefaults.buttonElevation(
@@ -102,5 +108,5 @@ fun DatePickerColored(
 @Composable
 @Preview
 fun DatePickerColoredPreview() {
- DatePickerColored( {})
+ DatePickerColored( {}, {})
 }

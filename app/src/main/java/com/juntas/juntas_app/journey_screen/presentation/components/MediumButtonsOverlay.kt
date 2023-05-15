@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,22 +28,30 @@ import com.juntas.juntas_app.R
 
 @Composable
 fun MediumButtonsOverlay(
+    complete: Boolean,
     icon: ImageVector,
     buttonText: String,
     buttonWidth: Dp,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val buttonColor = if (complete) ButtonDefaults.buttonColors(
+        containerColor = Color(0xFF5CBA2A),
+        contentColor = Color.White
+    )
+    else ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.background,
+        contentColor = Color(0xFF5CBA2A)
+    )
+    val textColor = if (complete) Color.White else MaterialTheme.colorScheme.onBackground
+
     Button(
         onClick = { onClick() },
         modifier = modifier
             .width(buttonWidth)
             .height(44.dp),
         shape = RoundedCornerShape(10.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.background,
-            contentColor = Color(0xFF5CBA2A)
-        ),
+        colors = buttonColor,
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 10.dp,
             pressedElevation = 2.dp,
@@ -62,8 +71,9 @@ fun MediumButtonsOverlay(
             Text(
                 text = buttonText,
                 style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onBackground,
-                textAlign = TextAlign.Start
+                color = textColor,
+                textAlign = TextAlign.Start,
+                overflow = TextOverflow.Ellipsis
             )
             Icon(
                 painterResource(id = R.drawable.forward_arrow_icon),
@@ -76,5 +86,5 @@ fun MediumButtonsOverlay(
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun MediumButtonsOverlayPreview() {
-    MediumButtonsOverlay( Icons.Default.Mode,"Where ", 100.dp, {})
+    MediumButtonsOverlay( false, Icons.Default.Mode,"Where ", 100.dp, {})
 }

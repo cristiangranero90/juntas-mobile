@@ -25,4 +25,6 @@
     <string name="big_baggage">Grande</string>
     <string name="medium_baggage">Mediano</string>
     <string name="small_baggage">Chico</string>
+    <string name="already_selected">Equipaje agregado</string>
+    <string name="continue_button">Continuar</string>
 </resources>
