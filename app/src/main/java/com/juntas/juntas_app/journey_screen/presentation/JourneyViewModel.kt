@@ -22,6 +22,9 @@ class JourneyViewModel @Inject constructor(
     var state by mutableStateOf(JourneyState())
         private set
 
+    init {
+        //getSites("argentina")
+    }
     fun getRoute() {
         viewModelScope.launch(Dispatchers.IO) {
             dynamicLoading()
@@ -46,13 +49,14 @@ class JourneyViewModel @Inject constructor(
 
     fun getSites(input: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val aux = repository.getPlaces(input).getOrNull()
-            if (aux != null) {
+            //var aux = emptyList<Prediction>()
+            repository.getPlaces(input).onSuccess { response ->
                 state = state.copy(
-                    responsePlace = aux.predictions
+                    responsePlace = response.predictions
                 )
-            } else {
+            }.onFailure {
                 setError(ErrorStatus.CITIES)
+                Log.i("ERROR: ", "${it.printStackTrace()}")
             }
         }
     }

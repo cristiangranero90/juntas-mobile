@@ -17,11 +17,11 @@ interface RoutesApi {
         @Query("region") region: String,
         @Query("key") api_key: String) : SpecificRoute
 
-    @GET("autocomplete/json?")
+    @GET("place/autocomplete/json?")
     suspend fun getSites(
         @Query("input") toSearch: String,
         @Query("language") lang: String,
-        @Query("radius") radius: Int,
+        @Query("radius") radius: String,
         @Query("type") type: String,
         @Query("key") api_key: String
     ) : placesResponseDto

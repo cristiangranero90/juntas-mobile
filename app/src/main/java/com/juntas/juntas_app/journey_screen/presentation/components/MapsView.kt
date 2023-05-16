@@ -26,6 +26,7 @@ import com.google.maps.android.compose.MapType
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
 import com.juntas.juntas_app.R
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
@@ -33,6 +34,8 @@ fun MapsView(
     onContinueClicked: () -> Unit ,
     passenger: Int ,
     children: Int ,
+    getSite: (String) -> Unit,
+    predictions: List<Prediction>,
     toPreferenceContext: Boolean ,
     onMinusChildren: () -> Unit ,
     onPlusChildren: () -> Unit ,
@@ -85,7 +88,9 @@ fun MapsView(
             onPlusChildren = {onPlusChildren()},
             onMinusPassenger = {onMinusPassenger()},
             onPlusPassenger = {onPlusPassenger()},
-            toPreferenceContext = toPreferenceContext
+            toPreferenceContext = toPreferenceContext,
+            predictions = predictions,
+            getSite = { getSite(it)}
         )
     }
 }
@@ -94,5 +99,5 @@ fun MapsView(
 @Composable
 @Preview(showBackground = true)
 fun MapsViewPreview() {
-    MapsView({},0,0, false,{},{},{},{})
+    MapsView({},0,0, {},emptyList() ,false,{},{},{},{})
 }

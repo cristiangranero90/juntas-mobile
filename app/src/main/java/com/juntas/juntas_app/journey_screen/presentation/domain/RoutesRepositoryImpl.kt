@@ -35,7 +35,7 @@ class RoutesRepositoryImpl(
                 api.getSites(
                     toSearch = toSearch,
                     lang = lang,
-                    radius = 500,
+                    radius = "500",
                     type = "geocode",
                     api_key = BuildConfig.DIRECTIONS_API
                 )

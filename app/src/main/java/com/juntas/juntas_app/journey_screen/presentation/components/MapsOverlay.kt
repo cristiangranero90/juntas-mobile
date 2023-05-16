@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.juntas.juntas_app.R
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
 import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -44,6 +45,8 @@ fun MapsOverlay(
     onContinueClicked: () -> Unit ,
     passenger: Int ,
     children: Int ,
+    getSite: (String) -> Unit,
+    predictions: List<Prediction>,
     toPreferenceContext: Boolean ,
     onMinusChildren: () -> Unit ,
     onPlusChildren: () -> Unit ,
@@ -151,11 +154,15 @@ fun MapsOverlay(
         }
         LargeButtonOverlay(
             buttonTittle = origin.value.ifBlank { stringResource(id = R.string.from) },
-            { origin.value = it }
+            buttonClicked = { origin.value = it },
+            predictions = predictions,
+            getSite = { getSite(it)}
         )
         LargeButtonOverlay(
             buttonTittle = destination.value.ifBlank { stringResource(id = R.string.to) },
-            { destination.value = it }
+            buttonClicked = { destination.value = it },
+            predictions = predictions,
+            getSite = { getSite(it)}
         )
 
         //Column with the latest three buttons
@@ -249,5 +256,5 @@ fun MapsOverlay(
 @Composable
 @Preview(showBackground = true)
 fun MapsOverlayPreview(){
-    MapsOverlay( onContinueClicked = {}, 0,0, false,{},{},{},{} )
+    MapsOverlay( onContinueClicked = {}, 0,0, {},emptyList() ,false,{},{},{},{} )
 }

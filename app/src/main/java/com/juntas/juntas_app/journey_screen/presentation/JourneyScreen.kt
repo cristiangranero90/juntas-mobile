@@ -35,13 +35,13 @@ fun JourneyScreen(
     }
     val current = LocalContext.current
 
-    when (state.error) {
-        ErrorStatus.DATE -> Toast.makeText(current, "Error: Date", Toast.LENGTH_SHORT).show()
-        ErrorStatus.SITES -> Toast.makeText(current, "Error: SITES", Toast.LENGTH_SHORT).show()
-        ErrorStatus.BAGGAGE -> Toast.makeText(current, "Error: BAGGAGE", Toast.LENGTH_SHORT).show()
-        ErrorStatus.CITIES -> Toast.makeText(current, "Error: CITIES", Toast.LENGTH_SHORT).show()
-        else -> TODO()
-    }
+    //when (state.error) {
+    //    ErrorStatus.DATE -> Toast.makeText(current, "Error: Date", Toast.LENGTH_SHORT).show()
+    //    ErrorStatus.SITES -> Toast.makeText(current, "Error: SITES", Toast.LENGTH_SHORT).show()
+    //    ErrorStatus.BAGGAGE -> Toast.makeText(current, "Error: BAGGAGE", Toast.LENGTH_SHORT).show()
+    //    ErrorStatus.CITIES -> Toast.makeText(current, "Error: CITIES", Toast.LENGTH_SHORT).show()
+    //    else -> {}
+    //}
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -85,7 +85,9 @@ fun JourneyScreen(
                     onMinusChildren = { viewModel.childrenMinus() },
                     onPlusChildren = { viewModel.childrenPlus() },
                     onMinusPassenger = { viewModel.passengerMinus() },
-                    onPlusPassenger = { viewModel.passengerPlus() }
+                    onPlusPassenger = { viewModel.passengerPlus() },
+                    predictions = state.responsePlace,
+                    getSite = { viewModel.getSites(it) }
                 )
             }
         }
