@@ -6,7 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.juntas.juntas_app.journey_screen.presentation.data.dto.SpecificRoute
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
 import com.juntas.juntas_app.journey_screen.presentation.domain.RoutesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,18 +28,32 @@ class JourneyViewModel @Inject constructor(
             val aux = repository.getSpecificRoute(state.origin, state.destination)
             if (aux.isSuccess) {
                 state = state.copy(
-                    response = aux
-                        .getOrDefault(SpecificRoute(
+                    responseRoute = aux
+                        .getOrDefault(
+                            SpecificRoute(
                             geocodedWaypoints = emptyList(),
                             routes = emptyList(),
                             "BAD")
                         )
                 )
-                Log.i("MSG: ", state.response.status)
+                Log.i("MSG: ", state.responseRoute.status)
             } else {
                 Log.i("ERROR", "Msg")
             }
             dynamicLoading()
+        }
+    }
+
+    fun getSites(input: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val aux = repository.getPlaces(input).getOrNull()
+            if (aux != null) {
+                state = state.copy(
+                    responsePlace = aux.predictions
+                )
+            } else {
+                setError(ErrorStatus.CITIES)
+            }
         }
     }
     fun dynamicLoading() {

@@ -1,6 +1,7 @@
 package com.juntas.juntas_app.journey_screen.presentation.data.remote
 
-import com.juntas.juntas_app.journey_screen.presentation.data.dto.SpecificRoute
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.placesResponseDto
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,4 +16,13 @@ interface RoutesApi {
         @Query("destination")destination: String,
         @Query("region") region: String,
         @Query("key") api_key: String) : SpecificRoute
+
+    @GET("autocomplete/json?")
+    suspend fun getSites(
+        @Query("input") toSearch: String,
+        @Query("language") lang: String,
+        @Query("radius") radius: Int,
+        @Query("type") type: String,
+        @Query("key") api_key: String
+    ) : placesResponseDto
 }

@@ -1,6 +1,8 @@
 package com.juntas.juntas_app.journey_screen.presentation
 
-import com.juntas.juntas_app.journey_screen.presentation.data.dto.SpecificRoute
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
+import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
+import kotlinx.coroutines.flow.Flow
 
 data class JourneyState (
     val isLoading: Boolean = false ,
@@ -11,11 +13,14 @@ data class JourneyState (
     val error: ErrorStatus = ErrorStatus.NONE,
     val origin: String = "" ,
     val destination: String = "" ,
-    val response: SpecificRoute = SpecificRoute(
+    val responseRoute: SpecificRoute = SpecificRoute(
         geocodedWaypoints = emptyList() ,
         routes = emptyList() ,
-        "none") ,
+        "none"),
+    val responsePlace: List<Prediction> = emptyList()
     )
+
+
 
 enum class BaggageStatus {
     NONE,
