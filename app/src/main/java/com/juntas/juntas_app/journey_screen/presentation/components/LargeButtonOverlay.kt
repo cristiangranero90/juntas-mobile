@@ -76,7 +76,7 @@ fun LargeButtonOverlay(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 if (onClick.value) {
-                    Icon(imageVector = Icons.Default.LocationOn, contentDescription = "Site drop menu")
+                    Icon(imageVector = Icons.Default.LocationOn, contentDescription = "Expand drop menu")
                     OutlinedTextField(
                         value = inputText,
                         onValueChange = {
@@ -97,8 +97,8 @@ fun LargeButtonOverlay(
             }
         }
         DropdownMenu(
-            expanded = onClick.value,
-            onDismissRequest = { /*TODO*/ },
+            expanded = onClick.value && predictions.isNotEmpty(),
+            onDismissRequest = { onClick.value = !onClick.value },
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .background(MaterialTheme.colorScheme.background),
@@ -117,12 +117,11 @@ fun LargeButtonOverlay(
                     trailingIcon = {
                         Icon(
                             imageVector = Icons.Default.ArrowForward ,
-                            contentDescription = "",
+                            contentDescription = "Click site",
                             tint = MaterialTheme.colorScheme.tertiary
                         )
                     }
                 )
-                Divider(modifier = Modifier.fillMaxWidth())
             }
         }
     }

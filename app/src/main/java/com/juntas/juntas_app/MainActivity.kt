@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.juntas.juntas_app.shared_components.Navigation
+import com.juntas.juntas_app.shared_components.SearchingDialog
 import com.juntas.juntas_app.ui.theme.JuntasAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     //JourneyScreen({})
                     //PreferenceScreen(onBackClicked = { /*TODO*/ })
                     //ManyDialog(onDismiss = { /*TODO*/ })
-                    Navigation()
+                    //Navigation()
+                    SearchingDialog(onDismiss = { /*TODO*/ })
                 }
             }
         }

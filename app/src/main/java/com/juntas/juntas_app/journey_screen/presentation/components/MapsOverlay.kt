@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.android.gms.maps.model.LatLng
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
 import java.util.Calendar
@@ -80,6 +81,9 @@ fun MapsOverlay(
     }
     val baggageItems = remember {
         mutableStateListOf(false, false, false)
+    }
+    val predictionsMarker = remember {
+        mutableStateListOf(LatLng(0.0, 0.0), LatLng(0.0, 0.0))
     }
     val calendar = remember { Calendar.getInstance() }
 
