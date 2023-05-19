@@ -44,4 +44,5 @@
     <string name="allergy">Alergia</string>
     <string name="chairwheel">"Silla "</string>
     <string name="medication">Medicación</string>
+    <string name="looking_trip">Buscando viajes…</string>
 </resources>
