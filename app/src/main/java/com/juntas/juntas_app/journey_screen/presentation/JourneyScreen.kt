@@ -1,7 +1,6 @@
 package com.juntas.juntas_app.journey_screen.presentation
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.juntas.juntas_app.journey_screen.presentation.components.MapsView
@@ -33,15 +31,6 @@ fun JourneyScreen(
     val toPreferenceContext = remember {
         mutableStateOf(false)
     }
-    val current = LocalContext.current
-
-    //when (state.error) {
-    //    ErrorStatus.DATE -> Toast.makeText(current, "Error: Date", Toast.LENGTH_SHORT).show()
-    //    ErrorStatus.SITES -> Toast.makeText(current, "Error: SITES", Toast.LENGTH_SHORT).show()
-    //    ErrorStatus.BAGGAGE -> Toast.makeText(current, "Error: BAGGAGE", Toast.LENGTH_SHORT).show()
-    //    ErrorStatus.CITIES -> Toast.makeText(current, "Error: CITIES", Toast.LENGTH_SHORT).show()
-    //    else -> {}
-    //}
 
     Scaffold(
         modifier = modifier.fillMaxSize(),

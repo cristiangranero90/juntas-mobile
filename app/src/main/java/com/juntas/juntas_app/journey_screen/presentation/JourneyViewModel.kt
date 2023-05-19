@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
+import com.google.android.gms.maps.model.LatLng
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
 import com.juntas.juntas_app.journey_screen.presentation.domain.RoutesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +21,6 @@ class JourneyViewModel @Inject constructor(
 
     var state by mutableStateOf(JourneyState())
         private set
-
     init {
         //getSites("argentina")
     }
@@ -46,6 +45,32 @@ class JourneyViewModel @Inject constructor(
             dynamicLoading()
         }
     }
+    fun setDeparture(date: Long) {
+        if (date != 0L) {
+            state = state.copy(
+                departureDate = date
+            )
+        } else {
+            setError(ErrorStatus.DATE)
+        }
+    }
+    fun setOriginLatLng(latLng: LatLng) {
+        state = state.copy(
+            originLatLng = latLng
+        )
+    }
+    fun setDestinationLatLng(latLng: LatLng) {
+        state = state.copy(
+            destinationLatLng = latLng
+        )
+    }
+    fun changeBaggage(position: Int) {
+        if (position in 0..2) {
+            state.baggage[position] = state.baggage[position].not()
+        } else {
+           setError(ErrorStatus.BAGGAGE)
+        }
+    }
 
     fun getSites(input: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -60,7 +85,7 @@ class JourneyViewModel @Inject constructor(
             }
         }
     }
-    fun dynamicLoading() {
+    private fun dynamicLoading() {
         state = state.copy(
             isLoading = !state.isLoading
         )
@@ -68,7 +93,7 @@ class JourneyViewModel @Inject constructor(
 
     fun passengerPlus( ) {
         if (state.passengers in 0..2) {
-            var aux = state.passengers + 1
+            val aux = state.passengers + 1
             state = state.copy(
                 passengers = aux
             )
@@ -76,7 +101,7 @@ class JourneyViewModel @Inject constructor(
     }
     fun childrenPlus() {
         if (state.children in 0..2) {
-            var aux = state.children + 1
+            val aux = state.children + 1
             state = state.copy(
                 children = aux
             )
@@ -84,7 +109,7 @@ class JourneyViewModel @Inject constructor(
     }
     fun passengerMinus() {
         if (state.passengers in 1..3) {
-            var aux = state.passengers - 1
+            val aux = state.passengers - 1
             state = state.copy(
                 passengers = aux
             )
@@ -92,13 +117,13 @@ class JourneyViewModel @Inject constructor(
     }
     fun childrenMinus() {
         if (state.children in 1..3) {
-            var aux = state.children - 1
+            val aux = state.children - 1
             state = state.copy(
                 children = aux
             )
         }
     }
-    fun setError(errorStatus: ErrorStatus) {
+    private fun setError(errorStatus: ErrorStatus) {
         state = state.copy(
             error = errorStatus
         )
