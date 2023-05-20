@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -39,6 +38,7 @@ import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Predict
 fun LargeButtonOverlay(
     buttonTittle: String ,
     getSite: (String) -> Unit,
+    setId: (String) -> Unit,
     predictions: List<Prediction>,
     buttonClicked: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -98,7 +98,7 @@ fun LargeButtonOverlay(
         }
         DropdownMenu(
             expanded = onClick.value && predictions.isNotEmpty(),
-            onDismissRequest = { onClick.value = !onClick.value },
+            onDismissRequest = { /*DO nothing*/ },
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .background(MaterialTheme.colorScheme.background),
@@ -112,6 +112,7 @@ fun LargeButtonOverlay(
                     onClick = {
                         selectedItem.value = prediction.description
                         buttonClicked(selectedItem.value)
+                        setId(prediction.placeId)
                         onClick.value = false
                     },
                     trailingIcon = {
@@ -130,5 +131,5 @@ fun LargeButtonOverlay(
 @Composable
 @Preview
 fun LargeButtonOverlayPreview() {
-    LargeButtonOverlay(stringResource(id = R.string.logo), {},emptyList() ,{})
+    LargeButtonOverlay(stringResource(id = R.string.logo), {},{},emptyList() ,{})
 }

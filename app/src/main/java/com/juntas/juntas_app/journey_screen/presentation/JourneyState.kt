@@ -1,6 +1,5 @@
 package com.juntas.juntas_app.journey_screen.presentation
 
-import com.google.android.gms.maps.model.LatLng
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
 
@@ -13,8 +12,8 @@ data class JourneyState (
     val error: ErrorStatus = ErrorStatus.NONE ,
     val origin: String = "" ,
     val destination: String = "" ,
-    val originLatLng: LatLng = LatLng(0.0, 0.0) ,
-    val destinationLatLng: LatLng = LatLng(0.0, 0.0) ,
+    val originId: String = "",
+    val destinationId: String = "",
     val responseRoute: SpecificRoute = SpecificRoute(
         geocodedWaypoints = emptyList() ,
         routes = emptyList() ,

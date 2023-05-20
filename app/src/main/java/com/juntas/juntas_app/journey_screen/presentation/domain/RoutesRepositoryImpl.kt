@@ -1,6 +1,5 @@
 package com.juntas.juntas_app.journey_screen.presentation.domain
 
-import androidx.compose.ui.platform.LocalContext
 import com.juntas.juntas_app.BuildConfig
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.placesResponseDto
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
@@ -19,8 +18,8 @@ class RoutesRepositoryImpl(
         return try {
             Result.success(
                 api.getRoute(
-                    origin = origin ,
-                    destination = destination ,
+                    origin = "place_id:$origin",
+                    destination = "place_id:$destination",
                     region = "es" ,
                     api_key = BuildConfig.DIRECTIONS_API
                 )

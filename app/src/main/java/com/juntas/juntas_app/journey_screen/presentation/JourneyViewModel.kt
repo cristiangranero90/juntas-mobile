@@ -6,8 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.maps.model.LatLng
-import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.SpecificRoute
 import com.juntas.juntas_app.journey_screen.presentation.domain.RoutesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,25 +22,19 @@ class JourneyViewModel @Inject constructor(
     init {
         //getSites("argentina")
     }
-    fun getRoute() {
-        viewModelScope.launch(Dispatchers.IO) {
-            dynamicLoading()
-            val aux = repository.getSpecificRoute(state.origin, state.destination)
-            if (aux.isSuccess) {
-                state = state.copy(
-                    responseRoute = aux
-                        .getOrDefault(
-                            SpecificRoute(
-                            geocodedWaypoints = emptyList(),
-                            routes = emptyList(),
-                            "BAD")
-                        )
-                )
-                Log.i("MSG: ", state.responseRoute.status)
-            } else {
-                Log.i("ERROR", "Msg")
+    private fun getRoute() {
+        if (state.destinationId.isNotBlank() && state.originId.isNotBlank()) {
+            viewModelScope.launch(Dispatchers.IO) {
+                dynamicLoading()
+                repository.getSpecificRoute(state.originId, state.destinationId).onSuccess { route ->
+                    state = state.copy(
+                        responseRoute = route
+                    )
+                }.onFailure {
+                    setError(ErrorStatus.CITIES)
+                }
+                dynamicLoading()
             }
-            dynamicLoading()
         }
     }
     fun setDeparture(date: Long) {
@@ -54,15 +46,19 @@ class JourneyViewModel @Inject constructor(
             setError(ErrorStatus.DATE)
         }
     }
-    fun setOriginLatLng(latLng: LatLng) {
+    fun setOriginId(id: String) {
+        Log.i("ID: ", "Origin: $id")
         state = state.copy(
-            originLatLng = latLng
+            originId = id
         )
+        getRoute()
     }
-    fun setDestinationLatLng(latLng: LatLng) {
+    fun setDestinationId(id: String) {
+        Log.i("ID: ", "Destination: $id")
         state = state.copy(
-            destinationLatLng = latLng
+            destinationId = id
         )
+        getRoute()
     }
     fun changeBaggage(position: Int) {
         if (position in 0..2) {

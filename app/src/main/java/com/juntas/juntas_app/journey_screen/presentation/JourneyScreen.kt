@@ -31,7 +31,6 @@ fun JourneyScreen(
     val toPreferenceContext = remember {
         mutableStateOf(false)
     }
-
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = { TopBar({/*TODO: Set clicked functions */}, {}, "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg") } ,
@@ -76,7 +75,10 @@ fun JourneyScreen(
                     onMinusPassenger = { viewModel.passengerMinus() },
                     onPlusPassenger = { viewModel.passengerPlus() },
                     predictions = state.responsePlace,
-                    getSite = { viewModel.getSites(it) }
+                    getSite = { viewModel.getSites(it) },
+                    setDestinationId = { viewModel.setDestinationId(it) },
+                    setOriginId = { viewModel.setOriginId(it) },
+                    specificRoute = state.responseRoute
                 )
             }
         }

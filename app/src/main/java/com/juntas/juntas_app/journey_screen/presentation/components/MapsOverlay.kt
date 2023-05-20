@@ -47,6 +47,8 @@ fun MapsOverlay(
     passenger: Int ,
     children: Int ,
     getSite: (String) -> Unit,
+    setOriginId: (String) -> Unit,
+    setDestinationId: (String) -> Unit,
     predictions: List<Prediction>,
     toPreferenceContext: Boolean ,
     onMinusChildren: () -> Unit ,
@@ -81,9 +83,6 @@ fun MapsOverlay(
     }
     val baggageItems = remember {
         mutableStateListOf(false, false, false)
-    }
-    val predictionsMarker = remember {
-        mutableStateListOf(LatLng(0.0, 0.0), LatLng(0.0, 0.0))
     }
     val calendar = remember { Calendar.getInstance() }
 
@@ -160,13 +159,15 @@ fun MapsOverlay(
             buttonTittle = origin.value.ifBlank { stringResource(id = R.string.from) },
             buttonClicked = { origin.value = it },
             predictions = predictions,
-            getSite = { getSite(it)}
+            getSite = { getSite(it) },
+            setId = { setOriginId(it) }
         )
         LargeButtonOverlay(
             buttonTittle = destination.value.ifBlank { stringResource(id = R.string.to) },
             buttonClicked = { destination.value = it },
             predictions = predictions,
-            getSite = { getSite(it)}
+            getSite = { getSite(it) },
+            setId = { setDestinationId(it) }
         )
 
         //Column with the latest three buttons
@@ -192,7 +193,7 @@ fun MapsOverlay(
                 complete = manyQuantity.value.isNotBlank(),
                 icon = Icons.Default.Group,
                 buttonText = if(manyQuantity.value.isBlank()) stringResource(id = R.string.how_many)
-                    else "${manyQuantity.value}" + " " +
+                    else manyQuantity.value + " " +
                         stringResource(id = R.string.adult),
                 buttonWidth = 177.dp,
                 onClick = { showDialog.value = true })
@@ -260,5 +261,5 @@ fun MapsOverlay(
 @Composable
 @Preview(showBackground = true)
 fun MapsOverlayPreview(){
-    MapsOverlay( onContinueClicked = {}, 0,0, {},emptyList() ,false,{},{},{},{} )
+    MapsOverlay( onContinueClicked = {}, 0,0, {},{},{},emptyList() ,false,{},{},{},{} )
 }
