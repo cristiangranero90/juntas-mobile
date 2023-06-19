@@ -45,4 +45,8 @@
     <string name="chairwheel">Cadeira</string>
     <string name="medication">Medicamento</string>
     <string name="looking_trip">Procurando viagem…</string>
+    <string name="full">Tudo cheio!</string>
+    <string name="last_seat">Último assento!</string>
+    <string name="half_seats">Meio assentos!</string>
+    <string name="empty_seats">há assentos!</string>
 </resources>

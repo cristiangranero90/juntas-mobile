@@ -69,15 +69,22 @@ class JourneyViewModel @Inject constructor(
     }
 
     fun getSites(input: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            //var aux = emptyList<Prediction>()
-            repository.getPlaces(input).onSuccess { response ->
-                state = state.copy(
-                    responsePlace = response.predictions
-                )
-            }.onFailure {
-                setError(ErrorStatus.CITIES)
-                Log.i("ERROR: ", "${it.printStackTrace()}")
+        if (input.isBlank()) {
+            state = state.copy(
+                responsePlace = emptyList()
+            )
+        }
+        else {
+            viewModelScope.launch(Dispatchers.IO) {
+                //var aux = emptyList<Prediction>()
+                repository.getPlaces(input).onSuccess { response ->
+                    state = state.copy(
+                        responsePlace = response.predictions
+                    )
+                }.onFailure {
+                    setError(ErrorStatus.CITIES)
+                    Log.i("ERROR: ", "${it.printStackTrace()}")
+                }
             }
         }
     }
