@@ -13,5 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-BuildConfig.class
-BuildConfig.java
+/app/build
