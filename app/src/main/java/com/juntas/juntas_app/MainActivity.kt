@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
                     //PreferenceScreen(onBackClicked = { /*TODO*/ })
                     //ManyDialog(onDismiss = { /*TODO*/ })
                     Navigation()
-                    //TripCard(onCardClick = {})
                     //SearchingDialog(onDismiss = { /*TODO*/ })
                 }
             }
