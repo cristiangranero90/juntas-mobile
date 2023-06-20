@@ -21,7 +21,7 @@ class RoutesRepositoryImpl(
                     origin = "place_id:$origin",
                     destination = "place_id:$destination",
                     region = "es" ,
-                    api_key = BuildConfig.DIRECTIONS_API
+                    api_key = BuildConfig.DIRECTIONS_KEY
                 )
             )
         } catch (e: Exception) {
@@ -36,7 +36,7 @@ class RoutesRepositoryImpl(
                     lang = lang,
                     radius = "500",
                     type = "geocode",
-                    api_key = BuildConfig.DIRECTIONS_API
+                    api_key = BuildConfig.DIRECTIONS_KEY
                 )
             )
         } catch (e: Exception) {
