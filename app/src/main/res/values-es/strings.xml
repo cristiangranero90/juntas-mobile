@@ -49,4 +49,5 @@
     <string name="last_seat">¡Último asiento!</string>
     <string name="half_seats">¡A la mitad!</string>
     <string name="empty_seats">¡Hay lugar!</string>
+    <string name="better_option">¡Elegí tu mejor opción!</string>
 </resources>

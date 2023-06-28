@@ -21,8 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.juntas.juntas_app.R
 import com.juntas.juntas_app.shared_components.BottomBar
 import com.juntas.juntas_app.shared_components.TopBar
 import com.juntas.juntas_app.trip_screen.presentation.components.TripCard
@@ -39,6 +41,7 @@ fun TripScreen(
             imageUrl = ""
         )},
         bottomBar = { BottomBar() }
+
     ){ paddingValues ->
         //Top info
         Column(
@@ -63,28 +66,31 @@ fun TripScreen(
                     )
                 }
             }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Spacer(modifier = Modifier.width(29.dp))
-                Text(
-                    text = "¡Elegí tu mejor opción!",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
             //Trip items
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 14.dp),
+                    .padding(),
                 state = rememberLazyListState(),
                 verticalArrangement = Arrangement.spacedBy(14.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                items(15) {
-                    TripCard(onCardClick = {})
+                //TODO: See it with Andrea, scroll
+                item {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Spacer(modifier = Modifier.width(29.dp))
+                        Text(
+                            text = stringResource(R.string.better_option) ,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
+                }
+                items(5) {
+                    TripCard(onCardClick = {}, origin = "CABA", destiny = "S.C. Bariloche")
                 }
             }
         }
