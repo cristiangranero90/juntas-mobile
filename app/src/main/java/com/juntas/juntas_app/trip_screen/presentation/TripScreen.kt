@@ -90,7 +90,12 @@ fun TripScreen(
                     }
                 }
                 items(5) {
-                    TripCard(onCardClick = {}, origin = "CABA", destiny = "S.C. Bariloche")
+                    TripCard(
+                        onCardClick = {},
+                        origin = "CABA",
+                        destiny = "S.C. Bariloche",
+                        profileImage = ""
+                    )
                 }
             }
         }
