@@ -1,5 +1,7 @@
 package com.juntas.juntas_app.trip_screen.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,10 @@ import com.juntas.juntas_app.R
 import com.juntas.juntas_app.shared_components.BottomBar
 import com.juntas.juntas_app.shared_components.TopBar
 import com.juntas.juntas_app.trip_screen.presentation.components.TripCard
+import java.time.LocalDate
+import java.time.LocalTime
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripScreen(
     modifier: Modifier = Modifier,
@@ -94,7 +98,12 @@ fun TripScreen(
                         onCardClick = {},
                         origin = "CABA",
                         destiny = "S.C. Bariloche",
-                        profileImage = ""
+                        profileImage = "",
+                        name = "Some name",
+                        qualification = 2,
+                        date = LocalDate.now(),
+                        time = LocalTime.now(),
+                        passengers = 2,
                     )
                 }
             }
@@ -102,6 +111,7 @@ fun TripScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 @Preview(showBackground = true)
 fun TripScreenPreview() {
