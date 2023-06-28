@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.juntas.juntas_app.shared_components.Navigation
+import com.juntas.juntas_app.trip_screen.presentation.TripScreen
+import com.juntas.juntas_app.trip_screen.presentation.components.TripCard
 import com.juntas.juntas_app.ui.theme.JuntasAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,8 +33,8 @@ class MainActivity : ComponentActivity() {
                     //JourneyScreen({})
                     //PreferenceScreen(onBackClicked = { /*TODO*/ })
                     //ManyDialog(onDismiss = { /*TODO*/ })
-                    Navigation()
-                    //TripCard(onCardClick = {})
+                    //Navigation()
+                    TripScreen()
                     //SearchingDialog(onDismiss = { /*TODO*/ })
                 }
             }

@@ -1,4 +1,4 @@
-package com.juntas.juntas_app.trip_screen.components
+package com.juntas.juntas_app.trip_screen.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -59,7 +59,7 @@ fun TopCard(
         ) {
         Box(
             modifier
-                .offset(y = (-20).dp)
+                .offset(y = (-10).dp)
                 .background(Color.LightGray , shape = RoundedCornerShape(10.dp))
                 .width(160.dp)
                 .height(39.dp),
