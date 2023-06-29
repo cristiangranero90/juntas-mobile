@@ -95,9 +95,9 @@ fun TripScreen(
                 }
                 items(5) {
                     TripCard(
-                        onCardClick = {},
-                        origin = "CABA",
-                        destiny = "S.C. Bariloche",
+                        onCardClick = { /* TODO: On card click */},
+                        origin = "CABA, Buenos Aires",
+                        destiny = "S.C. Bariloche, Rio negro",
                         profileImage = "",
                         name = "Some name",
                         qualification = 2,

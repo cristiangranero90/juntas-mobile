@@ -48,7 +48,7 @@ import java.time.LocalTime
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TripCard(
-    onCardClick: (Int) -> Unit ,
+    onCardClick: () -> Unit ,
     origin: String ,
     destiny: String ,
     name: String ,
@@ -66,7 +66,7 @@ fun TripCard(
         contentAlignment = Alignment.TopCenter
     ) {
         Card(
-            onClick = { /*TODO*/ },
+            onClick = { onCardClick() },
             modifier = modifier
                 .height(328.dp)
                 .fillMaxWidth(),
