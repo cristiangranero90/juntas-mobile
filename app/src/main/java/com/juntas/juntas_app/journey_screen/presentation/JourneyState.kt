@@ -17,7 +17,8 @@ data class JourneyState (
     val responseRoute: SpecificRoute = SpecificRoute(
         geocodedWaypoints = emptyList() ,
         routes = emptyList() ,
-        "none") ,
+        "none"
+    ) ,
     val responsePlace: List<Prediction> = emptyList()
     )
 

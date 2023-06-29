@@ -37,13 +37,13 @@ import com.juntas.juntas_app.journey_screen.presentation.data.dto.routes.Specifi
 @Composable
 fun MapsView(
     onContinueClicked: () -> Unit ,
-    specificRoute: SpecificRoute,
+    specificRoute: SpecificRoute ,
     passenger: Int ,
     children: Int ,
-    getSite: (String) -> Unit,
-    setOriginId: (String) -> Unit,
-    setDestinationId: (String) -> Unit,
-    predictions: List<Prediction>,
+    getSite: (String) -> Unit ,
+    setOriginId: (String) -> Unit ,
+    setDestinationId: (String) -> Unit ,
+    predictions: List<Prediction> ,
     toPreferenceContext: Boolean ,
     onMinusChildren: () -> Unit ,
     onPlusChildren: () -> Unit ,

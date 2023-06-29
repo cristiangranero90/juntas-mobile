@@ -35,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.model.LatLng
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
 import java.util.Calendar
@@ -46,10 +45,10 @@ fun MapsOverlay(
     onContinueClicked: () -> Unit ,
     passenger: Int ,
     children: Int ,
-    getSite: (String) -> Unit,
-    setOriginId: (String) -> Unit,
-    setDestinationId: (String) -> Unit,
-    predictions: List<Prediction>,
+    getSite: (String) -> Unit ,
+    setOriginId: (String) -> Unit ,
+    setDestinationId: (String) -> Unit ,
+    predictions: List<Prediction> ,
     toPreferenceContext: Boolean ,
     onMinusChildren: () -> Unit ,
     onPlusChildren: () -> Unit ,

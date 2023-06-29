@@ -65,7 +65,7 @@ fun TripScreen(
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = "Arrow back",
                         tint = MaterialTheme.colorScheme.secondary,
                     )
                 }

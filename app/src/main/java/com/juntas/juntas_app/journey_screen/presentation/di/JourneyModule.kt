@@ -1,4 +1,4 @@
-package com.juntas.juntas_app.journey_screen.di
+package com.juntas.juntas_app.journey_screen.presentation.di
 
 import com.juntas.juntas_app.journey_screen.presentation.data.remote.RoutesApi
 import com.juntas.juntas_app.journey_screen.presentation.domain.RoutesRepository

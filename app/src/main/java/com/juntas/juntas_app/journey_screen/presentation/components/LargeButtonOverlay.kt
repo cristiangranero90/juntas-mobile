@@ -37,10 +37,10 @@ import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Predict
 @Composable
 fun LargeButtonOverlay(
     buttonTittle: String ,
-    getSite: (String) -> Unit,
-    setId: (String) -> Unit,
-    predictions: List<Prediction>,
-    buttonClicked: (String) -> Unit,
+    getSite: (String) -> Unit ,
+    setId: (String) -> Unit ,
+    predictions: List<Prediction> ,
+    buttonClicked: (String) -> Unit ,
     modifier: Modifier = Modifier
 ) {
     val selectedItem = rememberSaveable {

@@ -11,7 +11,7 @@ data class Step(
     @SerializedName("polyline")
     val polyline: Polyline ,
     @SerializedName("start_location")
-    val startLocation: StartLocation,
+    val startLocation: StartLocation ,
     @SerializedName("end_location")
     val endLocation: EndLocation
 )
