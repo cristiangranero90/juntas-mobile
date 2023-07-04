@@ -23,6 +23,7 @@ interface RoutesApi {
         @Query("language") lang: String,
         @Query("radius") radius: String,
         @Query("type") type: String,
-        @Query("key") api_key: String
+        @Query("key") api_key: String,
+        @Query("components") components: String,
     ) : placesResponseDto
 }

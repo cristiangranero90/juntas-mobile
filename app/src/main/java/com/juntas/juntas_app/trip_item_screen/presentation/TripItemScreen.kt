@@ -81,7 +81,7 @@ fun TripItemScreen(
                     ) {
                         Column(modifier.fillMaxWidth(0.7f)) {
                             Text(
-                                text = "Nombre y Apellido",
+                                text = "Nombre y Apellido", //TODO: Name of driver
                                 style = MaterialTheme.typography.titleLarge,
                             )
                             Text(
@@ -105,7 +105,7 @@ fun TripItemScreen(
                             ) {
                                 AsyncImage(
                                     model = profileImage ,
-                                    contentDescription = "Profile image",
+                                    contentDescription = "Profile image", //TODO: Add her own profile image
                                     error = painterResource(id = R.drawable.car_women),
                                     contentScale = ContentScale.Crop
                                 )
@@ -145,7 +145,7 @@ fun TripItemScreen(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = "Sábado 12 de Mayo.",
+                            text = "Sábado 12 de Mayo.", //TODO: Add dates from origin
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.secondary
                         )
@@ -153,7 +153,7 @@ fun TripItemScreen(
                 }
 
                 item {
-                    TripItem()
+                    TripItem(usersImages = emptyList(), {}, {})
                 }
             }
         }

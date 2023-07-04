@@ -32,11 +32,12 @@ class RoutesRepositoryImpl(
         return try {
             Result.success(
                 api.getSites(
-                    toSearch = toSearch,
+                    toSearch = toSearch ,
                     lang = lang,
                     radius = "500",
                     type = "geocode",
-                    api_key = BuildConfig.DIRECTIONS_KEY
+                    api_key = BuildConfig.DIRECTIONS_KEY,
+                    components = "country:ar"
                 )
             )
         } catch (e: Exception) {

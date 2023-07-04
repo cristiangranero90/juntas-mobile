@@ -35,6 +35,7 @@ import java.time.LocalTime
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripScreen(
+    onBackClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -62,7 +63,7 @@ fun TripScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { onBackClicked() }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Arrow back",
@@ -115,5 +116,5 @@ fun TripScreen(
 @Composable
 @Preview(showBackground = true)
 fun TripScreenPreview() {
-    TripScreen()
+    TripScreen( {})
 }
