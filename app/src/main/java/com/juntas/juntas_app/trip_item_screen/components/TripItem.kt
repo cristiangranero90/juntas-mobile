@@ -119,13 +119,7 @@ fun TripItem(
                 )
             }
         }
-
-
-
-
-
     }
-
 }
 
 @Composable

@@ -43,7 +43,7 @@
     <string name="allergy">Allergy</string>
     <string name="chairwheel">ChairWheel</string>
     <string name="medication">Medication</string>
-    <string name="looking_trip">Looking for a trip…</string>
+    <string name="looking_trip">Searching…</string>
     <string name="full">Fully occupied!</string>
     <string name="last_seat">Last seat!</string>
     <string name="half_seats">Half seats!</string>
