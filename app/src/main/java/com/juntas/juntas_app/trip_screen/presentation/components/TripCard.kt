@@ -289,5 +289,15 @@ fun TripCard(
 @Composable
 @Preview(showBackground = true)
 fun TripCardPreview() {
-    TripCard({}, "CABA","S.C Bariloche", "Some name", "", 3, LocalDate.now(), LocalTime.now(), passengers = 2)
+    TripCard(
+        {},
+        "CABA",
+        "S.C Bariloche",
+        "Some name",
+        "",
+        3,
+        LocalDate.now(),
+        LocalTime.now(),
+        passengers = 2
+    )
 }

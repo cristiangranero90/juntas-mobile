@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.Icon
@@ -26,15 +26,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.trip_item_screen.components.TripItem
+import java.time.LocalDate
 
 @Composable
 fun TripItemScreen(
     profileImage: String,
+    date: Long,
+    userNameLast: String,
     onBackPressed: () -> Unit,
     modifier: Modifier = Modifier ,
 ) {
@@ -60,7 +64,7 @@ fun TripItemScreen(
             ) {
                 IconButton(onClick = { onBackPressed() }) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack  ,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Arrow back",
                         tint = MaterialTheme.colorScheme.secondary
                     )
@@ -74,18 +78,18 @@ fun TripItemScreen(
                 item {
                     Row(
                         modifier = Modifier
-                            .padding(start = 20.dp , end = 20.dp)
+                            .padding(start = 20.dp, end = 20.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(modifier.fillMaxWidth(0.7f)) {
                             Text(
-                                text = "Nombre y Apellido", //TODO: Name of driver
+                                text = userNameLast,
                                 style = MaterialTheme.typography.titleLarge,
                             )
                             Text(
-                                text = "Conduce a tu destino.",
+                                text = stringResource(R.string.drive_destiny),
                                 style = MaterialTheme.typography.titleMedium,
                             )
 
@@ -105,7 +109,7 @@ fun TripItemScreen(
                             ) {
                                 AsyncImage(
                                     model = profileImage ,
-                                    contentDescription = "Profile image", //TODO: Add her own profile image
+                                    contentDescription = "Profile image",
                                     error = painterResource(id = R.drawable.car_women),
                                     contentScale = ContentScale.Crop
                                 )
@@ -145,7 +149,7 @@ fun TripItemScreen(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = "Sábado 12 de Mayo.", //TODO: Add dates from origin
+                            text = LocalDate.ofEpochDay(date).toString(), //TODO: Add dates from origin
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.secondary
                         )
@@ -163,5 +167,5 @@ fun TripItemScreen(
 @Composable
 @Preview(showBackground = true)
 fun TripItemScreenPreview() {
-    TripItemScreen("", {})
+    TripItemScreen("empty", 123321321L, "Some Name",{} )
 }

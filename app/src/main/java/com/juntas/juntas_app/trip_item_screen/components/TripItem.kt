@@ -65,7 +65,7 @@ fun TripItem(
                     contentAlignment = Alignment.Center,
                 ) {
                     AsyncImage(
-                        model = usersImages?: "empty" ,
+                        model = usersImages,
                         contentDescription = "Profile image", //TODO: Add her own profile image
                         error = painterResource(id = R.drawable.car_women) ,
                         contentScale = ContentScale.Crop

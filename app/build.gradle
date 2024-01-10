@@ -34,6 +34,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_17
     }
@@ -55,11 +56,14 @@ android {
 }
 
 dependencies {
+    //desugaring
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs_nio:2.0.4")
+
     //Lottie animations
     implementation "com.airbnb.android:lottie-compose:6.0.0"
 
     //Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     //Icons extended
     implementation "androidx.compose.material:material-icons-extended:"
@@ -68,16 +72,16 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
 
     //Other
-    implementation "androidx.compose.material3:material3:1.2.0-alpha11"
-    implementation "androidx.compose.material3:material3-window-size-class:1.2.0-alpha11"
+    implementation "androidx.compose.material3:material3:1.2.0-beta01"
+    implementation "androidx.compose.material3:material3-window-size-class:1.2.0-beta01"
 
     //Google Maps
     implementation 'com.google.maps.android:maps-compose:2.11.0'
-    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
 
     //Dagger Hilt
-    def hilt_compiler_version = "1.0.0"
+    def hilt_compiler_version = "1.1.0"
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-android-compiler:2.44.2"
 

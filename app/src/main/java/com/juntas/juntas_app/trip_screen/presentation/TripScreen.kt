@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -65,7 +65,7 @@ fun TripScreen(
 
                 IconButton(onClick = { onBackClicked() }) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Arrow back",
                         tint = MaterialTheme.colorScheme.secondary,
                     )
@@ -89,14 +89,14 @@ fun TripScreen(
                     ) {
                         Spacer(modifier = Modifier.width(29.dp))
                         Text(
-                            text = stringResource(R.string.better_option) ,
+                            text = stringResource(R.string.better_option),
                             style = MaterialTheme.typography.titleLarge
                         )
                     }
                 }
                 items(5) {
                     TripCard(
-                        onCardClick = { /* TODO: On card click */},
+                        onCardClick = { /* TODO: On card click */ },
                         origin = "CABA, Buenos Aires",
                         destiny = "S.C. Bariloche, Rio negro",
                         profileImage = "",
