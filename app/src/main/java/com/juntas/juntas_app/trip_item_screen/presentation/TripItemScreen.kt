@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.trip_item_screen.components.TripItem
-import java.time.LocalDate
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 @Composable
 fun TripItemScreen(
@@ -149,7 +151,11 @@ fun TripItemScreen(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = LocalDate.ofEpochDay(date).toString(), //TODO: Add dates from origin
+                            text = LocalDateTime
+                                .ofInstant(
+                                    Instant.ofEpochSecond(date),
+                                    ZoneId.systemDefault()
+                                ).toString(), //TODO: Add dates from origin
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.secondary
                         )

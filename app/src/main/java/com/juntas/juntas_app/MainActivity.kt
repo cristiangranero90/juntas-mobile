@@ -34,9 +34,9 @@ class MainActivity : ComponentActivity() {
                     //ManyDialog(onDismiss = { /*TODO*/ })
                     Navigation()
 
-                    //TripItemScreen(profileImage = "" , onBackPressed = { /*TODO*/ })
+                    //TripItemScreen(profileImage = "" , onBackPressed = { /*TODO*/ }, date = 123712368, userNameLast = "Last name")
 
-                   // TripScreen({})
+                   //TripScreen({})
 
                     //LoadingDialog()
                     //SearchingDialog(onDismiss = { /*TODO*/ })

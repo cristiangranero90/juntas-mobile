@@ -26,6 +26,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,6 +38,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.journey_screen.presentation.data.dto.places.Prediction
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -75,7 +79,7 @@ fun MapsOverlay(
         mutableStateOf("")
     }
     val dateCalendar = remember {
-        mutableStateOf(0L)
+        mutableLongStateOf(0L)
     }
     val baggageReady = remember {
         mutableStateOf(false)
@@ -114,7 +118,7 @@ fun MapsOverlay(
     if (showCalendar.value) {
         DatePickerColored(
             onClose = {
-                dateCalendar.value = it
+                dateCalendar.longValue = it
                 calendar.timeInMillis = it
                 showCalendar.value = false
                       },
@@ -179,12 +183,13 @@ fun MapsOverlay(
         ) {
 
             MediumButtonsOverlay(
-                complete = dateCalendar.value != 0L,
+                complete = dateCalendar.longValue != 0L,
                 icon = Icons.Default.EditCalendar,
-                buttonText = if (dateCalendar.value == 0L) stringResource(R.string.when_string)
-                    else (calendar.get(Calendar.DATE) + 1).toString() + "/"
-                        + ((calendar.get(Calendar.MONTH)) + 1).toString() + "/"
-                        + calendar.get(Calendar.YEAR).toString() ,
+                buttonText = if (dateCalendar.longValue == 0L) stringResource(R.string.when_string)
+                    else (
+                        LocalDateTime
+                            .ofInstant(Instant.ofEpochSecond(dateCalendar.longValue),
+                                ZoneId.systemDefault()).toLocalDate().toString()), //TODO: Fix Dates
                 buttonWidth = 148.dp,
                 onClick = { showCalendar.value = true })
 
@@ -222,7 +227,7 @@ fun MapsOverlay(
             }
             //Continue button
             AnimatedVisibility(
-                visible = dateCalendar.value != 0L
+                visible = dateCalendar.longValue != 0L
                         && manyQuantity.value.isNotBlank()
                         && baggageReady.value
                         && origin.value.isNotBlank()
