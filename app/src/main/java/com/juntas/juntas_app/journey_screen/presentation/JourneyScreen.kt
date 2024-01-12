@@ -69,6 +69,8 @@ fun JourneyScreen(
                                         } ,
                     passenger = state.passengers ,
                     children =  state.children,
+                    date = state.departureDate,
+                    saveDate = { viewModel.savedate(it)},
                     toPreferenceContext = toPreferenceContext.value,
                     onMinusChildren = { viewModel.childrenMinus() },
                     onPlusChildren = { viewModel.childrenPlus() },

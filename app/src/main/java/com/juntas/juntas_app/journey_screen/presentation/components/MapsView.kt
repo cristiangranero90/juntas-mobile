@@ -40,6 +40,8 @@ fun MapsView(
     specificRoute: SpecificRoute ,
     passenger: Int ,
     children: Int ,
+    date: Long,
+    saveDate: (Long) -> Unit,
     getSite: (String) -> Unit ,
     setOriginId: (String) -> Unit ,
     setDestinationId: (String) -> Unit ,
@@ -49,7 +51,6 @@ fun MapsView(
     onPlusChildren: () -> Unit ,
     onMinusPassenger: () -> Unit ,
     onPlusPassenger: () -> Unit ,
-    modifier: Modifier = Modifier
 ) {
     val modifierHeight: Modifier =
         if (!toPreferenceContext) Modifier.height(500.dp) else Modifier.height(800.dp)
@@ -64,6 +65,7 @@ fun MapsView(
     var destinationState = remember {
         LatLng(0.0 , 0.0)
     }
+
     //Poly-lines
     if (specificRoute.routes.isNotEmpty()) {
         specificRoute.routes.forEach { route ->
@@ -119,6 +121,8 @@ fun MapsView(
             onContinueClicked = { onContinueClicked() } ,
             passenger = passenger ,
             children = children ,
+            dateLong = date,
+            changeDate = { saveDate(it) },
             onMinusChildren = { onMinusChildren() } ,
             onPlusChildren = { onPlusChildren() } ,
             onMinusPassenger = { onMinusPassenger() } ,

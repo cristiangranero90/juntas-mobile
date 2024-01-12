@@ -158,4 +158,10 @@ class JourneyViewModel @Inject constructor(
         }
     }
 
+    fun savedate(date: Long) {
+        state = state.copy(
+            departureDate = date
+        )
+    }
+
 }
