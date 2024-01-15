@@ -26,8 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.juntas.juntas_app.R
-import com.juntas.juntas_app.shared_components.BottomBar
-import com.juntas.juntas_app.shared_components.TopBar
 import com.juntas.juntas_app.trip_screen.presentation.components.TripCard
 import java.time.LocalDate
 import java.time.LocalTime
@@ -36,16 +34,14 @@ import java.time.LocalTime
 @Composable
 fun TripScreen(
     onBackClicked: () -> Unit,
+    topBar: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        topBar = { TopBar(
-            onProfileClicked = { /*TODO*/ } ,
-            onNotificationsClicked = { /*TODO*/ } ,
-            imageUrl = ""
-        )},
-        bottomBar = { BottomBar() }
+        topBar = topBar,
+        bottomBar = bottomBar
 
     ){ paddingValues ->
         //Top info
@@ -116,5 +112,5 @@ fun TripScreen(
 @Composable
 @Preview(showBackground = true)
 fun TripScreenPreview() {
-    TripScreen( {})
+    TripScreen( {},{},{})
 }
