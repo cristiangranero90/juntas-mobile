@@ -66,7 +66,10 @@ fun Navigation() {
             )
         }
         composable("home_screen") {
-            HomeScreen()
+            HomeScreen(
+                topBar = topBar,
+                bottomBar = bottomBar
+            )
         }
 
         composable("trip_screen") {
