@@ -17,13 +17,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.juntas.juntas_app.journey_screen.presentation.components.MapsView
 import com.juntas.juntas_app.journey_screen.presentation.components.TittleBox
 import com.juntas.juntas_app.journey_screen.presentation.components.TittleSearch
-import com.juntas.juntas_app.shared_components.BottomBar
-import com.juntas.juntas_app.shared_components.TopBar
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun JourneyScreen(
     goAhead: () -> Unit,
+    topBar: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit,
     viewModel: JourneyViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -33,8 +33,8 @@ fun JourneyScreen(
     }
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        topBar = { TopBar({/*TODO: Set clicked functions */}, {}, "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg") } ,
-        bottomBar = { BottomBar() },
+        topBar = topBar ,
+        bottomBar = bottomBar,
     ) { paddingValues ->
 
         LazyColumn(
@@ -91,5 +91,5 @@ fun JourneyScreen(
 @Composable
 @Preview(showBackground = true)
 fun JourneyScreenPreview() {
-    JourneyScreen({})
+    JourneyScreen({}, {}, {})
 }

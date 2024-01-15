@@ -16,23 +16,36 @@ fun Navigation() {
     val navController = rememberNavController()
     //val navBackStackEntry by navController.currentBackStackEntryAsState()
     //val currentDestination = navBackStackEntry?.destination
-    val bottomBar =  BottomBar()
-    val topBar = TopBar(
-        onProfileClicked = { /*TODO*/ },
-        onNotificationsClicked = { /*TODO*/ },
-        imageUrl = ""
-    )
+    val bottomBar: @Composable () -> Unit = {
+        BottomBar()
+    }
+    val topBar: @Composable () -> Unit = {
+        TopBar(
+            onProfileClicked = { /*TODO*/ },
+            onNotificationsClicked = { /*TODO*/ },
+            imageUrl = "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
+        )
+    }
+
 
     NavHost(
         navController = navController ,
         startDestination = "journey_screen",
     ) {
         composable("journey_screen") {
-            JourneyScreen( goAhead = { navController.navigate("preference_screen") } )
+            JourneyScreen(
+                goAhead = { navController.navigate("preference_screen") },
+                topBar = topBar,
+                bottomBar = bottomBar
+            )
         }
 
         composable("preference_screen") {
-            PreferenceScreen(onBackClicked = { navController.navigateUp() })
+            PreferenceScreen(
+                onBackClicked = { navController.navigateUp() },
+                topBar = topBar,
+                bottomBar = bottomBar
+            )
         }
     }
 }

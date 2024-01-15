@@ -38,12 +38,12 @@ import com.juntas.juntas_app.R
 import com.juntas.juntas_app.preference_screen.PreferenceViewModel
 import com.juntas.juntas_app.preference_screen.components.AnotherInfo
 import com.juntas.juntas_app.preference_screen.components.HealthItem
-import com.juntas.juntas_app.shared_components.BottomBar
-import com.juntas.juntas_app.shared_components.TopBar
 
 @Composable
 fun PreferenceScreen(
     onBackClicked: () -> Unit,
+    topBar: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit,
     viewModel: PreferenceViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
 ) {
@@ -51,12 +51,8 @@ fun PreferenceScreen(
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        topBar = { TopBar(
-            onProfileClicked = { /*TODO*/ } ,
-            onNotificationsClicked = { /*TODO*/ } ,
-            imageUrl = "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
-        )},
-        bottomBar = { BottomBar() },
+        topBar = topBar,
+        bottomBar = bottomBar,
     ) { paddingValues ->
 
         LazyColumn(
@@ -241,5 +237,5 @@ fun PreferenceScreen(
 @Composable
 @Preview(showBackground = true)
 fun PreferenceScreenPreview() {
-    PreferenceScreen( {} )
+    PreferenceScreen( {}, {}, {} )
 }
