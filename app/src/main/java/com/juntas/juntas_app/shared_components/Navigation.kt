@@ -16,6 +16,12 @@ fun Navigation() {
     val navController = rememberNavController()
     //val navBackStackEntry by navController.currentBackStackEntryAsState()
     //val currentDestination = navBackStackEntry?.destination
+    val bottomBar =  BottomBar()
+    val topBar = TopBar(
+        onProfileClicked = { /*TODO*/ },
+        onNotificationsClicked = { /*TODO*/ },
+        imageUrl = ""
+    )
 
     NavHost(
         navController = navController ,
