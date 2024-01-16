@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.juntas.juntas_app.shared_components.BottomBar
+import com.juntas.juntas_app.shared_components.TopBar
 
 @Composable
 fun JourneyCreate(
@@ -37,5 +39,19 @@ fun JourneyCreate(
 @Composable
 @Preview
 fun JourneyCreatePreview(){
-    JourneyCreate( {},{} )
+    JourneyCreate( topBar = {
+        TopBar(
+        onProfileClicked = { /*TODO*/ },
+        onNotificationsClicked = { /*TODO*/ },
+        imageUrl = ""
+    )
+    },
+        bottomBar = {
+            BottomBar(
+                currentDestination = null,
+                onHomeClicked = { /*TODO*/ },
+                onPassengerClicked = { /*TODO*/ },
+                onDriverClicked = { /*TODO*/ })
+        }
+    )
 }

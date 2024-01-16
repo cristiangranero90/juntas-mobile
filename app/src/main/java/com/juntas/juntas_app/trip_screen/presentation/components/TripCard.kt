@@ -1,7 +1,5 @@
 package com.juntas.juntas_app.trip_screen.presentation.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +22,6 @@ import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -44,8 +41,9 @@ import coil.compose.AsyncImage
 import com.juntas.juntas_app.R
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun TripCard(
     onCardClick: () -> Unit ,
@@ -229,7 +227,7 @@ fun TripCard(
                             tint = MaterialTheme.colorScheme.tertiary,
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text(text = time.toString(), style = MaterialTheme.typography.bodySmall)
+                        Text(text = time.format(DateTimeFormatter.ofPattern("HH-MM")).toString(), style = MaterialTheme.typography.bodySmall)
                     }
                     //Passengers
                     Spacer(modifier = Modifier.height(10.dp))
@@ -285,7 +283,7 @@ fun TripCard(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 @Composable
 @Preview(showBackground = true)
 fun TripCardPreview() {

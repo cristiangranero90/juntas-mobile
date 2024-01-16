@@ -33,18 +33,19 @@ import coil.compose.AsyncImage
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.trip_item_screen.components.TripItem
 import java.time.Instant
-import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun TripItemScreen(
     profileImage: String,
-    date: Long,
+    dateLong: Long,
     userNameLast: String,
     onBackPressed: () -> Unit,
     modifier: Modifier = Modifier ,
 ) {
     var stars = 3
+    val date = Instant.ofEpochMilli(dateLong).atZone(ZoneId.of("UTC")).toLocalDate()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -151,11 +152,7 @@ fun TripItemScreen(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         Text(
-                            text = LocalDateTime
-                                .ofInstant(
-                                    Instant.ofEpochSecond(date),
-                                    ZoneId.systemDefault()
-                                ).toString(), //TODO: Add dates from origin
+                            text = date.format(DateTimeFormatter.ofPattern("DD-MM-yyyy")).toString(), //TODO: Add dates from origin
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.secondary
                         )
