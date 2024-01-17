@@ -42,8 +42,6 @@ import com.juntas.juntas_app.R
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-
-
 @Composable
 fun TripCard(
     onCardClick: () -> Unit ,
@@ -227,7 +225,7 @@ fun TripCard(
                             tint = MaterialTheme.colorScheme.tertiary,
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text(text = time.format(DateTimeFormatter.ofPattern("HH-MM")).toString(), style = MaterialTheme.typography.bodySmall)
+                        Text(text = time.format(DateTimeFormatter.ofPattern("hh:mm")).toString(), style = MaterialTheme.typography.bodySmall)
                     }
                     //Passengers
                     Spacer(modifier = Modifier.height(10.dp))
