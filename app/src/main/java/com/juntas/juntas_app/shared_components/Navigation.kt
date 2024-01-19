@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.juntas.juntas_app.home_screen.HomeScreen
 import com.juntas.juntas_app.journey_create_first.domain.JourneyCreate
 import com.juntas.juntas_app.journey_screen.presentation.JourneyScreen
+import com.juntas.juntas_app.login_screen.LoginScreen
 import com.juntas.juntas_app.preference_screen.presentation.PreferenceScreen
 import com.juntas.juntas_app.trip_screen.presentation.TripScreen
 
@@ -41,7 +42,7 @@ fun Navigation() {
 
     NavHost(
         navController = navController ,
-        startDestination = "journey_screen",
+        startDestination = "login_screen",
     ) {
         composable("journey_screen") {
             JourneyScreen(
@@ -80,6 +81,10 @@ fun Navigation() {
                     topBar = topBar
                 )
             }
+        }
+
+        composable("login_screen") {
+            LoginScreen(loginOk = { navController.navigate("home_screen") })
         }
     }
 }

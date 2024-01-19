@@ -20,7 +20,7 @@
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
     <string name="adult">Adults</string>
-    <string name="minors">Childrens</string>
+    <string name="minors">Children</string>
     <string name="big_baggage">Big</string>
     <string name="medium_baggage">Medium</string>
     <string name="small_baggage">Small</string>
@@ -52,4 +52,8 @@
     <string name="driven_by">"Driven by "</string>
     <string name="loading">Loading…</string>
     <string name="drive_destiny">Drives to your destiny</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="not_account">Don\'t have an account?</string>
+    <string name="signup">Signup</string>
 </resources>

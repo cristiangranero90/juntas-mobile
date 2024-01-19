@@ -53,4 +53,8 @@
     <string name="driven_by">"Conduzido por "</string>
     <string name="loading">Carregando…</string>
     <string name="drive_destiny">Dirija até o seu destino</string>
+    <string name="password">Senha</string>
+    <string name="login">Iniciar sessão</string>
+    <string name="not_account">Não tem uma conta?</string>
+    <string name="signup">Registro</string>
 </resources>

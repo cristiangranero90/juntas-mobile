@@ -4,6 +4,7 @@ plugins {
     id "com.google.dagger.hilt.android"
     id "kotlin-kapt"
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -56,6 +57,12 @@ android {
 }
 
 dependencies {
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+
     //OSM
     implementation "org.osmdroid:osmdroid-android:6.1.18"
 

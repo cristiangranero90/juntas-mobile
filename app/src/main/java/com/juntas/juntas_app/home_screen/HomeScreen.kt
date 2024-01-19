@@ -6,11 +6,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
-
 
 @Composable
 fun HomeScreen(
@@ -18,7 +18,7 @@ fun HomeScreen(
     topBar: @Composable () -> Unit,
     bottomBar : @Composable () -> Unit,
 ) {
-    val geoPoint = GeoPoint(0.0, 0.0)
+    val geoPoint = GeoPoint(-38.4192641 , -63.5989206)
 
 
     Scaffold(
@@ -41,7 +41,7 @@ fun HomeScreen(
                     MapView(context).apply {
                         // Do anything that needs to happen on the view init here
                         // For example set the tile source or add a click listener
-                        setTileSource(TileSourceFactory.WIKIMEDIA)
+                        setTileSource(TileSourceFactory.USGS_TOPO)
                         setOnClickListener {
                             TODO("Handle click here")
                         }
@@ -51,7 +51,7 @@ fun HomeScreen(
                     // Code to update or recompose the view goes here
                     // Since geoPoint is read here, the view will recompose whenever it is updated
                     view.controller.setCenter(geoPoint)
-                    view.controller.setZoom(9.5)
+                    view.controller.setZoom(6)
 
                 },
             )
@@ -59,3 +59,12 @@ fun HomeScreen(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    HomeScreen(
+        topBar = {},
+        bottomBar = {}
+
+    )
+}
