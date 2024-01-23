@@ -83,8 +83,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
 
     //Other
-    implementation "androidx.compose.material3:material3:1.2.0-beta01"
-    implementation "androidx.compose.material3:material3-window-size-class:1.2.0-beta01"
+    implementation "androidx.compose.material3:material3:1.2.0-beta02"
+    implementation "androidx.compose.material3:material3-window-size-class:1.2.0-beta02"
 
     //Google Maps
     implementation 'com.google.maps.android:maps-compose:2.11.0'
