@@ -117,5 +117,11 @@ class LoginScreenViewModel @Inject constructor(
         )
     }
 
-
+    fun getImage() : String {
+        return if (auth.currentUser != null) {
+            auth.currentUser!!.photoUrl.toString()
+        } else {
+            "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
+        }
+    }
 }

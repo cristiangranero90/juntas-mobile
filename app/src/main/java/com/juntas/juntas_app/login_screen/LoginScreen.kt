@@ -46,7 +46,7 @@ import com.juntas.juntas_app.login_screen.domain.LoginError
 
 @Composable
 fun LoginScreen(
-    loginOk: () -> Unit,
+    loginOk: (String) -> Unit,
     modifier: Modifier = Modifier,
     vm: LoginScreenViewModel = hiltViewModel()
 ) {
@@ -78,7 +78,7 @@ fun LoginScreen(
 
     if(data.isLogin) {
         LoginDialog()
-        loginOk()
+        loginOk(vm.getImage())
     }
 
     if (data.error == LoginError.CREDENTIALS) {
@@ -98,7 +98,7 @@ fun LoginScreen(
         vm.resetError()
     }
     if (data.ready){
-        loginOk()
+        loginOk(vm.getImage())
     }
 
     Column(

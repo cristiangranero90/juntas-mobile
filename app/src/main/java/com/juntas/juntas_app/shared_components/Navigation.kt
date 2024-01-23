@@ -4,6 +4,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -22,6 +24,9 @@ fun Navigation() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    val imageUrl = remember {
+        mutableStateOf("https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg")
+    }
 
     val bottomBar: @Composable () -> Unit = {
         BottomBar(
@@ -35,7 +40,7 @@ fun Navigation() {
         TopBar(
             onProfileClicked = { /*TODO*/ },
             onNotificationsClicked = { /*TODO*/ },
-            imageUrl = "https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
+            imageUrl = imageUrl.value
         )
     }
 
@@ -84,7 +89,12 @@ fun Navigation() {
         }
 
         composable("login_screen") {
-            LoginScreen(loginOk = { navController.navigate("home_screen") })
+            LoginScreen(
+                loginOk = {
+                    navController.navigate("home_screen")
+                    imageUrl.value = it
+                }
+            )
         }
     }
 }
