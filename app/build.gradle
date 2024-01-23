@@ -26,6 +26,7 @@ android {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
         buildConfigField "String", "DIRECTIONS_KEY", "\"${properties.getProperty('DIRECTIONS_KEY')}\""
+        buildConfigField "String", "SERVER_CLIENT", "\"${properties.getProperty('SERVER_CLIENT')}\""
     }
 
     buildTypes {

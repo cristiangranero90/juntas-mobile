@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.juntas.juntas_app.login_screen.domain.LoginData
 import com.juntas.juntas_app.login_screen.domain.LoginError
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
-
+    val auth: FirebaseAuth,
+    val signInOptions: GoogleSignInOptions
 ) : ViewModel(){
 
     var state by mutableStateOf(LoginData(
@@ -27,13 +28,31 @@ class LoginScreenViewModel @Inject constructor(
         error = LoginError.NONE
         )
     )
+    private set
+
+    init {
+        try {
+            if(auth.currentUser != null) {
+                auth.signOut()
+                //state = state.copy(
+                //    isLogin = true,
+                //)
+            }
+        } catch (e: Exception){
+            state = state.copy(
+                error = LoginError.CREDENTIALS
+            )
+            e.printStackTrace()
+        }
+    }
 
     private fun logIn(){
         viewModelScope.launch {
             try {
-                Firebase.auth.signInWithEmailAndPassword(state.email, state.password).await()
+                auth.signInWithEmailAndPassword(state.email, state.password).await()
                 state = state.copy(
-                    isLogin = true
+                    isLogin = true,
+                    ready = true
                 )
             } catch (e: Exception){
                 state = state.copy(
@@ -68,7 +87,7 @@ class LoginScreenViewModel @Inject constructor(
         print("FORMAT:" + email)
         viewModelScope.launch {
             try {
-                Firebase.auth.sendPasswordResetEmail(email).await()
+                auth.sendPasswordResetEmail(email).await()
                 resetError()
             } catch (e: Exception) {
                 state = state.copy(
@@ -88,6 +107,13 @@ class LoginScreenViewModel @Inject constructor(
     fun recoveryPass() {
         state = state.copy(
             error = LoginError.FORGOT
+        )
+    }
+
+    fun googleSignIn() {
+        state = state.copy(
+            isLogin = true,
+            ready = true
         )
     }
 

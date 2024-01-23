@@ -57,4 +57,5 @@
     <string name="login">Iniciá sesión</string>
     <string name="not_account">¿No tenés cuenta?</string>
     <string name="signup">Registrate</string>
+    <string name="forgotten_password">¿Olvidaste tu constraseña?</string>
 </resources>

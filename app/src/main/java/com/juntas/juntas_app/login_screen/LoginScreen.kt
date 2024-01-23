@@ -1,7 +1,10 @@
 package com.juntas.juntas_app.login_screen
 
 
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,8 +36,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.login_screen.components.ForgotPasswordDialog
+import com.juntas.juntas_app.login_screen.components.LoginDialog
 import com.juntas.juntas_app.login_screen.domain.LoginError
 
 @Composable
@@ -47,9 +54,33 @@ fun LoginScreen(
     val data = vm.state
     val context = LocalContext.current
 
+    val googleSignInClient = GoogleSignIn.getClient(context, vm.signInOptions)
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) {
+        val task =
+            try {
+                val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+                    .getResult(ApiException::class.java)
+                val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
+                vm.auth.signInWithCredential(credential)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            vm.googleSignIn()
+                            Log.d("Init Session", "Google sign in")
+                        }
+                    }
+            }
+            catch (e: ApiException) {
+                Log.w("TAG", "GoogleSign in Failed", e)
+            }
+    }
+
     if(data.isLogin) {
+        LoginDialog()
         loginOk()
     }
+
     if (data.error == LoginError.CREDENTIALS) {
         Toast.makeText(context, "Error de credenciales, por favor inténtelo nuevamente mas tarde", Toast.LENGTH_SHORT).show()
         vm.resetError()
@@ -65,6 +96,9 @@ fun LoginScreen(
     if (data.error == LoginError.EMAIL) {
         Toast.makeText(context, "No existe cuenta con ese email", Toast.LENGTH_SHORT).show()
         vm.resetError()
+    }
+    if (data.ready){
+        loginOk()
     }
 
     Column(
@@ -102,7 +136,7 @@ fun LoginScreen(
 
         )
         Text(
-            text = "No recuerdo mi contraseña",
+            text = stringResource(R.string.forgotten_password),
             modifier = Modifier.clickable {
                 vm.recoveryPass()
             }
@@ -122,7 +156,10 @@ fun LoginScreen(
             verticalAlignment = Alignment.CenterVertically
         ){
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    googleSignInClient.signOut()
+                    launcher.launch(googleSignInClient.signInIntent)
+                },
                 modifier = Modifier.clip(CircleShape)
             ) {
                 Icon(
