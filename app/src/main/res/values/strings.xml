@@ -60,4 +60,7 @@
     <string name="closing_session">Logging out</string>
     <string name="logging_in">Logging in</string>
     <string name="log_out">Log out</string>
+    <string name="login_tittle">Login</string>
+    <string name="recover_account">Recover your account</string>
+    <string name="enter_email">Enter your email address</string>
 </resources>

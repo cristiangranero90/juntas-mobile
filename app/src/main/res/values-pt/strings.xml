@@ -61,4 +61,7 @@
     <string name="closing_session">Efetuando logout</string>
     <string name="logging_in">Efetuando login</string>
     <string name="log_out">Efetuar logout</string>
+    <string name="login_tittle">Login</string>
+    <string name="recover_account">Recuperar sua conta</string>
+    <string name="enter_email">Digite seu endereço de e-mail</string>
 </resources>

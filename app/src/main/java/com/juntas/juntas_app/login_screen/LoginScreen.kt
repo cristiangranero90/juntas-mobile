@@ -21,8 +21,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -99,7 +101,10 @@ fun LoginScreen(
         vm.resetError()
     }
     if (data.error == LoginError.FORGOT){
-        ForgotPasswordDialog(email = { vm.forgotPass(it) } )
+        ForgotPasswordDialog(
+            email = { vm.forgotPass(it) },
+            dismiss = { vm.resetError() }
+        )
     }
     if (data.error == LoginError.EMAIL) {
         Toast.makeText(context, "No existe cuenta con ese email", Toast.LENGTH_SHORT).show()
@@ -125,7 +130,7 @@ fun LoginScreen(
             Image(painterResource(id = R.drawable.logo_juntas) , contentDescription = "Juntas Logo")
         }
         Spacer(modifier = Modifier.height(50.dp))
-        Text(text = "Inicio de sesión", fontSize = 30.sp)
+        Text(text = stringResource(R.string.login_tittle), fontSize = 30.sp)
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
@@ -167,7 +172,12 @@ fun LoginScreen(
             Text(text = stringResource(R.string.login))
         }
         Spacer(modifier = Modifier.height(20.dp))
-
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth(0.8f),
+            thickness = 1.dp,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Spacer(modifier = Modifier.height(20.dp))
         Row (
             modifier = Modifier.fillMaxWidth(0.8f),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -204,7 +214,7 @@ fun LoginScreen(
             ) {
                 Icon(
                     painterResource(id = R.drawable.apple),
-                    contentDescription = "Facebook Button",
+                    contentDescription = "Apple Button",
                     modifier = Modifier.fillMaxSize(),
                     tint = Color.Unspecified
                 )

@@ -57,8 +57,11 @@
     <string name="login">Iniciá sesión</string>
     <string name="not_account">¿No tenés cuenta?</string>
     <string name="signup">Registrate</string>
-    <string name="forgotten_password">¿Olvidaste tu constraseña?</string>
+    <string name="forgotten_password">¿Olvidaste tu contraseña?</string>
     <string name="closing_session">Cerrando sesión</string>
     <string name="logging_in">Iniciando sesión</string>
     <string name="log_out">Cerrar sesión</string>
+    <string name="login_tittle">Inicio de sesión</string>
+    <string name="recover_account">Recuperá tu cuenta</string>
+    <string name="enter_email">Ingresá tu email</string>
 </resources>

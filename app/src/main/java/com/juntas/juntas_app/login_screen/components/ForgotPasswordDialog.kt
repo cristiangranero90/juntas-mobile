@@ -14,11 +14,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.juntas.juntas_app.R
 
 @Composable
 fun ForgotPasswordDialog(
     email: (String) -> Unit,
+    dismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val emailText = remember {
@@ -26,11 +29,17 @@ fun ForgotPasswordDialog(
     }
 
     AlertDialog(
-        onDismissRequest = { /*TODO*/ },
+        onDismissRequest = { dismiss() },
         containerColor = MaterialTheme.colorScheme.onPrimary,
+        modifier = modifier,
+        dismissButton = {
+            Button(onClick = { dismiss() }) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+        },
         confirmButton = {
             Button(onClick = { email(emailText.value) }) {
-                Text(text = "Aceptar")
+                Text(text = stringResource(id = R.string.accept))
             }           
         },
         title = {
@@ -39,7 +48,7 @@ fun ForgotPasswordDialog(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ){
-                Text(text = "Recuperar cuenta")
+                Text(text = stringResource(R.string.recover_account))
             }
                 },
         text = {
@@ -48,7 +57,7 @@ fun ForgotPasswordDialog(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(text = "Ingresá tu email")
+                Text(text = stringResource(R.string.enter_email))
                 OutlinedTextField(
                     value = emailText.value,
                     onValueChange = { emailText.value = it },
@@ -62,5 +71,5 @@ fun ForgotPasswordDialog(
 @Preview
 @Composable
 fun ForgotPasswordDialogPreview() {
-    ForgotPasswordDialog({})
+    ForgotPasswordDialog({}, {})
 }
