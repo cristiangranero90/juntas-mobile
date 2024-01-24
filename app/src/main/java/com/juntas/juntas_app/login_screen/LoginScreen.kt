@@ -43,7 +43,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.login_screen.components.ForgotPasswordDialog
-import com.juntas.juntas_app.login_screen.components.LoginDialog
 import com.juntas.juntas_app.login_screen.domain.LoginError
 import com.juntas.juntas_app.shared_components.LoadingDialog
 
