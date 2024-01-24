@@ -1,8 +1,10 @@
 package com.juntas.juntas_app.login_screen
 
 
+import android.app.Activity
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -54,6 +56,7 @@ fun LoginScreen(
 
     val data = vm.state
     val context = LocalContext.current
+    val activity = LocalContext.current as Activity
 
     val googleSignInClient = GoogleSignIn.getClient(context, vm.signInOptions)
     val launcher = rememberLauncherForActivityResult(
@@ -75,6 +78,10 @@ fun LoginScreen(
             catch (e: ApiException) {
                 Log.w("TAG", "GoogleSign in Failed", e)
             }
+    }
+
+    BackHandler {
+        activity.finish()
     }
 
     if(data.isLogin) {

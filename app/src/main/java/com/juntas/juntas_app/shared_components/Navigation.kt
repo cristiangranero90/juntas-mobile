@@ -93,7 +93,11 @@ fun Navigation() {
         composable("login_screen") {
             LoginScreen(
                 loginOk = {
-                    navController.navigate("home_screen")
+                    navController.navigate("home_screen") {
+                        popUpTo("login_screen")
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                     imageUrl.value = it
                 }
             )
