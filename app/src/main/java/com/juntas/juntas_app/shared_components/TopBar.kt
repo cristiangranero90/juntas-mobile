@@ -101,7 +101,7 @@ fun TopBar(
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.onPrimary)
                 ) {
                     Text(
-                        text = "Close session", color = MaterialTheme.colorScheme.primary,
+                        text = stringResource(id = R.string.log_out), color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
                             closeSession.value = !closeSession.value
                             Firebase.auth.signOut()

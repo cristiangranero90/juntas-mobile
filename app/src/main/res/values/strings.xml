@@ -58,5 +58,6 @@
     <string name="signup">Signup</string>
     <string name="forgotten_password">Forgot your account?</string>
     <string name="closing_session">Logging out</string>
-    <string name="Logging_in">Logging in</string>
+    <string name="logging_in">Logging in</string>
+    <string name="log_out">Log out</string>
 </resources>

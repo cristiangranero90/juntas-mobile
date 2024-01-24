@@ -84,7 +84,7 @@ fun LoginScreen(
     }
 
     if(data.isLogin) {
-        LoadingDialog(tittle = stringResource(id = R.string.Logging_in))
+        LoadingDialog(tittle = stringResource(id = R.string.logging_in))
         loginOk(vm.getImage())
     }
 

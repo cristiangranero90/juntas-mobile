@@ -59,5 +59,6 @@
     <string name="signup">Registro</string>
     <string name="forgotten_password">Esqueceu sua conta?</string>
     <string name="closing_session">Efetuando logout</string>
-    <string name="Logging_in">Efetuando login</string>
+    <string name="logging_in">Efetuando login</string>
+    <string name="log_out">Efetuar logout</string>
 </resources>

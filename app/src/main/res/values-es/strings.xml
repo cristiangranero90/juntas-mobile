@@ -59,5 +59,6 @@
     <string name="signup">Registrate</string>
     <string name="forgotten_password">¿Olvidaste tu constraseña?</string>
     <string name="closing_session">Cerrando sesión</string>
-    <string name="Logging_in">Iniciando sesión</string>
+    <string name="logging_in">Iniciando sesión</string>
+    <string name="log_out">Cerrar sesión</string>
 </resources>
