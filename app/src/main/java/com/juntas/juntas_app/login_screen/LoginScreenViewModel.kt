@@ -33,10 +33,10 @@ class LoginScreenViewModel @Inject constructor(
     init {
         try {
             if(auth.currentUser != null) {
-                auth.signOut()
-                //state = state.copy(
-                //    isLogin = true,
-                //)
+                state = state.copy(
+                    isLogin = true,
+                    ready = true
+                )
             }
         } catch (e: Exception){
             state = state.copy(
