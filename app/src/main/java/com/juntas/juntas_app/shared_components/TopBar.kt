@@ -1,6 +1,7 @@
 package com.juntas.juntas_app.shared_components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -95,10 +97,11 @@ fun TopBar(
                 )
                 DropdownMenu(
                     expanded = openMenu.value,
-                    onDismissRequest = { openMenu.value = !openMenu.value }
+                    onDismissRequest = { openMenu.value = !openMenu.value },
+                    modifier = Modifier.background(color = MaterialTheme.colorScheme.onPrimary)
                 ) {
                     Text(
-                        text = "Close session",
+                        text = "Close session", color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
                             closeSession.value = !closeSession.value
                             Firebase.auth.signOut()

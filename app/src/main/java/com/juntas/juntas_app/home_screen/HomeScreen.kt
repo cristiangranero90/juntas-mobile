@@ -48,7 +48,7 @@ fun HomeScreen(
                     MapView(context).apply {
                         // Do anything that needs to happen on the view init here
                         // For example set the tile source or add a click listener
-                        setTileSource(TileSourceFactory.USGS_TOPO)
+                        setTileSource(TileSourceFactory.OpenTopo)
                         setOnClickListener {
                             TODO("Handle click here")
                         }
