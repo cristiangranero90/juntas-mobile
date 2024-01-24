@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -55,7 +56,7 @@ fun LoginScreen(
 
     val data = vm.state
     val context = LocalContext.current
-    val activity = LocalContext.current as Activity
+    val activity = context as Activity
 
     val googleSignInClient = GoogleSignIn.getClient(context, vm.signInOptions)
     val launcher = rememberLauncherForActivityResult(
@@ -124,6 +125,9 @@ fun LoginScreen(
             Image(painterResource(id = R.drawable.logo_juntas) , contentDescription = "Juntas Logo")
         }
         Spacer(modifier = Modifier.height(50.dp))
+        Text(text = "Inicio de sesión", fontSize = 30.sp)
+        Spacer(modifier = Modifier.height(20.dp))
+
         OutlinedTextField(
             value = data.email,
             onValueChange = {vm.changeEmail(it)},
@@ -142,13 +146,19 @@ fun LoginScreen(
             placeholder = { Text(text = stringResource(R.string.password))}
 
         )
-        Text(
-            text = stringResource(R.string.forgotten_password),
-            modifier = Modifier.clickable {
-                vm.recoveryPass()
-            }
-        )
-        Spacer(modifier = Modifier.height(20.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(0.8f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = stringResource(R.string.forgotten_password),
+                modifier = Modifier.clickable {
+                    vm.recoveryPass()
+                }
+            )
+        }
+        Spacer(modifier = Modifier.height(40.dp))
         Button(
             modifier = Modifier.fillMaxWidth(0.8f),
             shape = RoundedCornerShape(10.dp),
@@ -157,8 +167,9 @@ fun LoginScreen(
             Text(text = stringResource(R.string.login))
         }
         Spacer(modifier = Modifier.height(20.dp))
+
         Row (
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(0.8f),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ){
@@ -182,6 +193,17 @@ fun LoginScreen(
             ) {
                 Icon(
                     painterResource(id = R.drawable.facebook_icon),
+                    contentDescription = "Facebook Button",
+                    modifier = Modifier.fillMaxSize(),
+                    tint = Color.Unspecified
+                )
+            }
+            IconButton(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.clip(CircleShape)
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.apple),
                     contentDescription = "Facebook Button",
                     modifier = Modifier.fillMaxSize(),
                     tint = Color.Unspecified
