@@ -58,4 +58,6 @@
     <string name="not_account">Não tem uma conta?</string>
     <string name="signup">Registro</string>
     <string name="forgotten_password">Esqueceu sua conta?</string>
+    <string name="closing_session">Efetuando logout</string>
+    <string name="Logging_in">Efetuando login</string>
 </resources>

@@ -41,7 +41,7 @@ fun JourneyCreate(
 fun JourneyCreatePreview(){
     JourneyCreate( topBar = {
         TopBar(
-        onProfileClicked = { /*TODO*/ },
+        onCloseSession = { /*TODO*/ },
         onNotificationsClicked = { /*TODO*/ },
         imageUrl = ""
     )

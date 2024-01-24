@@ -43,6 +43,7 @@ import com.juntas.juntas_app.R
 import com.juntas.juntas_app.login_screen.components.ForgotPasswordDialog
 import com.juntas.juntas_app.login_screen.components.LoginDialog
 import com.juntas.juntas_app.login_screen.domain.LoginError
+import com.juntas.juntas_app.shared_components.LoadingDialog
 
 @Composable
 fun LoginScreen(
@@ -77,7 +78,7 @@ fun LoginScreen(
     }
 
     if(data.isLogin) {
-        LoginDialog()
+        LoadingDialog(tittle = stringResource(id = R.string.Logging_in))
         loginOk(vm.getImage())
     }
 

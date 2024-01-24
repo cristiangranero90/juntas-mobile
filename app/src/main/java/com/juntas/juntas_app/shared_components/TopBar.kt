@@ -34,19 +34,27 @@ import com.juntas.juntas_app.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    onProfileClicked: () -> Unit,
+    onCloseSession: () -> Unit,
     onNotificationsClicked: () -> Unit,
     imageUrl: String,
     modifier: Modifier = Modifier,
 ) {
     
-    var open = remember {
+    val openMenu = remember {
         mutableStateOf(false)
     }
-    var elements = remember {
+    val elements = remember {
         mutableStateListOf<String>()
     }
+    val closeSession = remember {
+        mutableStateOf(false)
+    }
     elements.add("Close session")
+
+    if (closeSession.value) {
+        LoadingDialog(tittle = stringResource(R.string.closing_session))
+    }
+
     
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
@@ -75,8 +83,7 @@ fun TopBar(
                 .size(39.dp)
                 .clip(CircleShape)
                 .clickable {
-                    onProfileClicked()
-                    open.value = !open.value
+                    openMenu.value = !openMenu.value
                 }
                 .shadow(elevation = 1.dp, shape = CircleShape),
                 contentAlignment = Alignment.Center
@@ -87,19 +94,18 @@ fun TopBar(
                     error = painterResource(R.drawable.ic_launcher_foreground)
                 )
                 DropdownMenu(
-                    expanded = open.value,
-                    onDismissRequest = { open.value = !open.value }
+                    expanded = openMenu.value,
+                    onDismissRequest = { openMenu.value = !openMenu.value }
                 ) {
-                    for (element: String in elements) {
-                        Text(
-                            text = element,
-                            modifier = Modifier.clickable {
-                                open.value = !open.value
-                                Firebase.auth.signOut()
-                                //TODO: Repair SignOut
-                            }
-                        )
-                    }
+                    Text(
+                        text = "Close session",
+                        modifier = Modifier.clickable {
+                            closeSession.value = !closeSession.value
+                            Firebase.auth.signOut()
+                            onCloseSession()
+                            openMenu.value = !openMenu.value
+                        }
+                    )
                 }
             }
         },

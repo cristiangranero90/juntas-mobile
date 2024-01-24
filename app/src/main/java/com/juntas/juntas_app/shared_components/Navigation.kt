@@ -38,7 +38,9 @@ fun Navigation() {
     }
     val topBar: @Composable () -> Unit = {
         TopBar(
-            onProfileClicked = { /*TODO*/ },
+            onCloseSession = {
+                navController.navigate("login_screen")
+                             },
             onNotificationsClicked = { /*TODO*/ },
             imageUrl = imageUrl.value
         )

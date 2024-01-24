@@ -57,4 +57,6 @@
     <string name="not_account">Don\'t have an account?</string>
     <string name="signup">Signup</string>
     <string name="forgotten_password">Forgot your account?</string>
+    <string name="closing_session">Logging out</string>
+    <string name="Logging_in">Logging in</string>
 </resources>
