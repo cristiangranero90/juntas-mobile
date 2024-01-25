@@ -64,4 +64,8 @@
     <string name="login_tittle">Login</string>
     <string name="recover_account">Recuperar sua conta</string>
     <string name="enter_email">Digite seu endereço de e-mail</string>
+    <string name="create_account">Criar uma conta</string>
+    <string name="your_name">Digite seu nome</string>
+    <string name="your_last_name">Digite seu sobrenome</string>
+    <string name="enter_password">Digite uma senha</string>
 </resources>

@@ -11,7 +11,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +21,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -54,6 +52,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.juntas.juntas_app.R
 import com.juntas.juntas_app.login_screen.components.ForgotPasswordDialog
+import com.juntas.juntas_app.login_screen.components.RegisterDialog
 import com.juntas.juntas_app.login_screen.domain.LoginError
 import com.juntas.juntas_app.shared_components.LoadingDialog
 
@@ -74,6 +73,9 @@ fun LoginScreen(
         mutableStateOf(false)
     }
     val showPassword = remember {
+        mutableStateOf(false)
+    }
+    val registerDialog = remember {
         mutableStateOf(false)
     }
 
@@ -103,16 +105,38 @@ fun LoginScreen(
         activity.finish()
     }
 
+    if(registerDialog.value) {
+        RegisterDialog(
+            onDismiss = { registerDialog.value = !registerDialog.value },
+            onAccept = {
+                vm.register(it)
+                registerDialog.value = !registerDialog.value
+            }
+        )
+    }
+    //Toast Manage
+    if(data.register){
+        LoadingDialog(tittle = "Creando usuario")
+    }
+    if (data.emailSend) {
+        Toast.makeText(context,"Email send", Toast.LENGTH_SHORT).show()
+    }
+    if(data.registerComplete && data.emailSend) {
+        Toast.makeText(context,"Register complete", Toast.LENGTH_SHORT).show()
+        loginOk(vm.getImage())
+    }
+    if (data.error == LoginError.SEND){
+        Toast.makeText(context,"Error sending email", Toast.LENGTH_SHORT).show()
+        vm.resetError()
+    }
     if(data.isLogin) {
         LoadingDialog(tittle = stringResource(id = R.string.logging_in))
         loginOk(vm.getImage())
     }
-
     if (data.error == LoginError.CREDENTIALS) {
         Toast.makeText(context, "Error de credenciales, por favor inténtelo nuevamente mas tarde", Toast.LENGTH_SHORT).show()
         vm.resetError()
     }
-
     if (data.error == LoginError.EMPTY) {
         passError.value = true
         emailError.value = true
@@ -133,6 +157,7 @@ fun LoginScreen(
         loginOk(vm.getImage())
     }
 
+    //View
     LazyColumn(
         modifier
             .fillMaxSize()
@@ -184,7 +209,6 @@ fun LoginScreen(
                     }
                 },
                 placeholder = { Text(text = stringResource(R.string.password))}
-
             )
         }
         item {
@@ -273,7 +297,7 @@ fun LoginScreen(
             )
             {
                 Text(text = stringResource(R.string.not_account))
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { registerDialog.value = !registerDialog.value }) {
                     Text(text = stringResource(R.string.signup))
                 }
             }

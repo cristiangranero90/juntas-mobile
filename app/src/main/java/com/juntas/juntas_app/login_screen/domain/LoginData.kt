@@ -5,7 +5,10 @@ data class LoginData(
     val password: String,
     val isLogin: Boolean,
     val ready: Boolean,
-    val error: LoginError
+    val error: LoginError,
+    val register: Boolean,
+    val emailSend: Boolean,
+    val registerComplete: Boolean
 )
 
 enum class LoginError {
@@ -14,5 +17,6 @@ enum class LoginError {
     SIGNUP,
     CREDENTIALS,
     FORGOT,
-    EMAIL
+    EMAIL,
+    SEND
 }

@@ -63,4 +63,8 @@
     <string name="login_tittle">Login</string>
     <string name="recover_account">Recover your account</string>
     <string name="enter_email">Enter your email address</string>
+    <string name="create_account">Create an account</string>
+    <string name="your_name">Enter your name</string>
+    <string name="your_last_name">Enter your last name</string>
+    <string name="enter_password">Enter a password</string>
 </resources>
